@@ -1,0 +1,7 @@
+・決定音　・・・　decision
+・ステージセレクトのときに数字を選んだら流す音　・・・　integration.mp3
+・水流を流す音　・・・　jet.mp3
+・泡が下から上にいっぱいいくシーン移行の音　・・・　zavan.mp3
+・合体したときの音？　・・・　integration.mp3
+・分裂したときの音？　・・・　division.mp3
+・泡が割れる音　・・・　break.wav
