@@ -41,6 +41,41 @@ void MapData::update(void)
     }
 }
 
+//void MapData::draw(void)
+//{
+//    for (int Ver = 0; Ver < MAPCHIP_V_MAX; Ver++)
+//    {
+//        for (int Hor = 0; Hor < MAPCHIP_H_MAX; Hor++)
+//        {
+//            //if (mapData[Ver][Hor] == GoalSpawner)
+//            //{
+//            //    src.set(0, 0);
+//            //    DrawRectExtendGraph(MAPCHIP_SIZE * Hor, MAPCHIP_SIZE * Ver, MAPCHIP_SIZE * Hor + MAPCHIP_SIZE, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE, src.x, src.y, 300, 300, goals, true);
+//            //}
+//            //else
+//            {
+//                switch (mapData[Ver][Hor])
+//                {
+//                case Void:          src.set(130 * 0, 130 * 0);  break;
+//                case LFloor:        src.set(130 * 1, 130 * 0);  break;
+//                case Floor:         src.set(130 * 2, 130 * 0);  break;
+//                case RFloor:        src.set(130 * 3, 130 * 0);  break;
+//                case Wall:          src.set(130 * 0, 130 * 1);  break;
+//                case Lift:          src.set(130 * 1, 130 * 1);  break;
+//                case Needle:        src.set(130 * 2, 130 * 1);  break;
+//                case Splitter:      src.set(130 * 3, 130 * 1);  break;
+//                case BubbleSpawner: src.set(130 * 0, 130 * 2);  break;
+//                    //case GoalSpawner:   src.set(130 * 1, 130 * 2);  break;
+//                    //case StartSource:   src.set(130 * 2, 130 * 2);  break;
+//                    //case EndSource:     src.set(130 * 3, 130 * 2);  break;
+//                default: src.set(0, 0);  break;
+//                }
+//                DrawRectExtendGraph(MAPCHIP_SIZE * Hor, MAPCHIP_SIZE * Ver, MAPCHIP_SIZE * Hor + MAPCHIP_SIZE, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE, src.x, src.y, width, height, handle, true);
+//            }
+//        }
+//    }
+//}
+
 void MapData::draw(void)
 {
     for (int Ver = 0; Ver < MAPCHIP_V_MAX; Ver++)

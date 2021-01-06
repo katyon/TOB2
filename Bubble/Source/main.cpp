@@ -283,21 +283,22 @@ void Usable::MainLoop(void)
         case State_Title:
             M_SceneTitle.update();         // タイトル更新処理
             M_SceneTitle.draw();           // タイトル描画処理
-            //M_System.drawDebugString(); // debug
             break;
         case State_Choice:
             M_SceneChoice.update();        // ステージ選択更新処理
             M_SceneChoice.draw();          // ステージ選択描画処理
-            //M_System.drawDebugString(); // debug
             break;
         case State_Game:
             M_SceneGame.update();          // ゲーム更新処理
             M_SceneGame.draw();            // ゲーム描画処理
-            //M_System.drawDebugString(); // debug
             break;
         }
 
-        //M_System.inputDebugKey();   // debug
+#ifdef _DEBUG
+        if(sceneState!= State_Editor) M_System.drawDebugString();
+        M_System.inputDebugKey();
+#endif // _DEBUG
+
         ScreenFlip();   // VSYNCを待つ
 
         // ESCキーだけは常に監視。押されたら直ちに終了
