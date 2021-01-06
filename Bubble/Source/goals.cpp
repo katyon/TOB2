@@ -53,6 +53,12 @@ void Goals::init(void)
         I_GoalsObj[1].init(&I_GoalsObj[1], 14 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 4);
         I_GoalsObj[2].init(&I_GoalsObj[2], 22 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 3);
         break;
+    case 6:
+        maxNum = 3;
+        I_GoalsObj[0].init(&I_GoalsObj[0], 6 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 3);
+        I_GoalsObj[1].init(&I_GoalsObj[1], 14 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 4);
+        I_GoalsObj[2].init(&I_GoalsObj[2], 22 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 3);
+        break;
     default:
         maxNum = 1;
         break;

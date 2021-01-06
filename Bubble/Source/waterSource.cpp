@@ -57,6 +57,12 @@ void WaterSource::init(void)
     case 5:
         maxNum = 3;
         break;
+    case 6:
+        maxNum = 3;
+        I_WatereObj[0].init(&I_WatereObj[0], 64, 320);
+        I_WatereObj[1].init(&I_WatereObj[1], 384, 576);
+        I_WatereObj[2].init(&I_WatereObj[2], 832, 1024);
+        break;
     default:
         maxNum = 1;
         break;
