@@ -6,6 +6,7 @@
 #include "waterSource.h"
 #include "stage_select.h"
 #include "system.h"
+#include "map.h"
 
 // externéŒ¾,static‰Šú‰» ----------------------------------------------------------------------
 extern PlBubbleObj I_PlBubbleObj[PL_BUBBLE_MAX];
@@ -15,7 +16,7 @@ extern WaterObj I_WatereObj[SOURCE_MAX];
 void WaterObj::init(WaterObj* obj, float posY, float rel_posY)
 {
     obj->pos.set(0, posY);
-    obj->rel_pos.set(1920, rel_posY);
+    obj->rel_pos.set(MAPCHIP_SIZE * MAPCHIP_H_MAX, rel_posY);
     obj->num = 0;
     obj->exist = false;
 }
@@ -58,10 +59,13 @@ void WaterSource::init(void)
         maxNum = 3;
         break;
     case 6:
-        maxNum = 3;
-        I_WatereObj[0].init(&I_WatereObj[0], 64, 320);
-        I_WatereObj[1].init(&I_WatereObj[1], 384, 576);
-        I_WatereObj[2].init(&I_WatereObj[2], 832, 1024);
+        maxNum = 6;
+        I_WatereObj[0].init(&I_WatereObj[0], MAPCHIP_SIZE * 2 - MAPCHIP_SIZE, MAPCHIP_SIZE * 5);
+        I_WatereObj[1].init(&I_WatereObj[1], MAPCHIP_SIZE * 7 - MAPCHIP_SIZE, MAPCHIP_SIZE * 9);
+        I_WatereObj[2].init(&I_WatereObj[2], MAPCHIP_SIZE * 12 - MAPCHIP_SIZE, MAPCHIP_SIZE * 13);
+        I_WatereObj[3].init(&I_WatereObj[3], MAPCHIP_SIZE * 19 - MAPCHIP_SIZE, MAPCHIP_SIZE * 22);
+        I_WatereObj[4].init(&I_WatereObj[4], MAPCHIP_SIZE * 25 - MAPCHIP_SIZE, MAPCHIP_SIZE * 27);
+        I_WatereObj[5].init(&I_WatereObj[5], MAPCHIP_SIZE * 29 - MAPCHIP_SIZE, MAPCHIP_SIZE * 31);
         break;
     default:
         maxNum = 1;
@@ -130,71 +134,18 @@ void WaterSource::update(void)
 
 void WaterSource::draw(void)
 {
-    switch (maxNum)
+    for (int i = 0; i < maxNum; i++)
     {
-    case 1:
-        DrawExtendGraphF(I_WatereObj[0].pos.x + 128, I_WatereObj[0].pos.y, I_WatereObj[0].pos.x, I_WatereObj[0].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[0].rel_pos.x - 128, I_WatereObj[0].pos.y, I_WatereObj[0].rel_pos.x, I_WatereObj[0].rel_pos.y, handle, true);
-        break;
-    case 2:
-        DrawExtendGraphF(I_WatereObj[0].pos.x + 128, I_WatereObj[0].pos.y, I_WatereObj[0].pos.x, I_WatereObj[0].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[0].rel_pos.x - 128, I_WatereObj[0].pos.y, I_WatereObj[0].rel_pos.x, I_WatereObj[0].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[1].pos.x + 128, I_WatereObj[1].pos.y, I_WatereObj[1].pos.x, I_WatereObj[1].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[1].rel_pos.x - 128, I_WatereObj[1].pos.y, I_WatereObj[1].rel_pos.x, I_WatereObj[1].rel_pos.y, handle, true);
-        break;
-    case 3:
-        DrawExtendGraphF(I_WatereObj[0].pos.x + 128, I_WatereObj[0].pos.y, I_WatereObj[0].pos.x, I_WatereObj[0].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[0].rel_pos.x - 128, I_WatereObj[0].pos.y, I_WatereObj[0].rel_pos.x, I_WatereObj[0].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[1].pos.x + 128, I_WatereObj[1].pos.y, I_WatereObj[1].pos.x, I_WatereObj[1].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[1].rel_pos.x - 128, I_WatereObj[1].pos.y, I_WatereObj[1].rel_pos.x, I_WatereObj[1].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[2].pos.x + 128, I_WatereObj[2].pos.y, I_WatereObj[2].pos.x, I_WatereObj[2].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[2].rel_pos.x - 128, I_WatereObj[2].pos.y, I_WatereObj[2].rel_pos.x, I_WatereObj[2].rel_pos.y, handle, true);
-        break;
-    case 4:
-        DrawExtendGraphF(I_WatereObj[0].pos.x + 128, I_WatereObj[0].pos.y, I_WatereObj[0].pos.x, I_WatereObj[0].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[0].rel_pos.x - 128, I_WatereObj[0].pos.y, I_WatereObj[0].rel_pos.x, I_WatereObj[0].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[1].pos.x + 128, I_WatereObj[1].pos.y, I_WatereObj[1].pos.x, I_WatereObj[1].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[1].rel_pos.x - 128, I_WatereObj[1].pos.y, I_WatereObj[1].rel_pos.x, I_WatereObj[1].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[2].pos.x + 128, I_WatereObj[2].pos.y, I_WatereObj[2].pos.x, I_WatereObj[2].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[2].rel_pos.x - 128, I_WatereObj[2].pos.y, I_WatereObj[2].rel_pos.x, I_WatereObj[2].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[3].pos.x + 128, I_WatereObj[3].pos.y, I_WatereObj[3].pos.x, I_WatereObj[3].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[3].rel_pos.x - 128, I_WatereObj[3].pos.y, I_WatereObj[3].rel_pos.x, I_WatereObj[3].rel_pos.y, handle, true);
-        break;
-    case 5:
-        DrawExtendGraphF(I_WatereObj[0].pos.x + 128, I_WatereObj[0].pos.y, I_WatereObj[0].pos.x, I_WatereObj[0].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[0].rel_pos.x - 128, I_WatereObj[0].pos.y, I_WatereObj[0].rel_pos.x, I_WatereObj[0].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[1].pos.x + 128, I_WatereObj[1].pos.y, I_WatereObj[1].pos.x, I_WatereObj[1].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[1].rel_pos.x - 128, I_WatereObj[1].pos.y, I_WatereObj[1].rel_pos.x, I_WatereObj[1].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[2].pos.x + 128, I_WatereObj[2].pos.y, I_WatereObj[2].pos.x, I_WatereObj[2].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[2].rel_pos.x - 128, I_WatereObj[2].pos.y, I_WatereObj[2].rel_pos.x, I_WatereObj[2].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[3].pos.x + 128, I_WatereObj[3].pos.y, I_WatereObj[3].pos.x, I_WatereObj[3].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[3].rel_pos.x - 128, I_WatereObj[3].pos.y, I_WatereObj[3].rel_pos.x, I_WatereObj[3].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[4].pos.x + 128, I_WatereObj[4].pos.y, I_WatereObj[4].pos.x, I_WatereObj[4].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[4].rel_pos.x - 128, I_WatereObj[4].pos.y, I_WatereObj[4].rel_pos.x, I_WatereObj[4].rel_pos.y, handle, true);
-        break;
+        DrawExtendGraphF(I_WatereObj[i].pos.x + 128 - M_MapData.scrollPos.x, I_WatereObj[i].pos.y - M_MapData.scrollPos.y,
+            I_WatereObj[i].pos.x - M_MapData.scrollPos.x, I_WatereObj[i].rel_pos.y - M_MapData.scrollPos.y, handle, true);
+        DrawExtendGraphF(I_WatereObj[i].rel_pos.x - 128 - M_MapData.scrollPos.x, I_WatereObj[i].pos.y - M_MapData.scrollPos.y,
+            I_WatereObj[i].rel_pos.x - M_MapData.scrollPos.x, I_WatereObj[i].rel_pos.y - M_MapData.scrollPos.y, handle, true);
     }
 
     for (int i = 0; i < 10; i++)
     {
-        switch (nowNum)
-        {
-        case 1:
-            DrawBox(I_WatereObj[0].pos.x + i, I_WatereObj[0].pos.y + i, I_WatereObj[0].rel_pos.x - i, I_WatereObj[0].rel_pos.y - i, cr, false);
-            break;
-        case 2:
-            DrawBox(I_WatereObj[1].pos.x + i, I_WatereObj[1].pos.y + i, I_WatereObj[1].rel_pos.x - i, I_WatereObj[1].rel_pos.y - i, cr, false);
-            break;
-        case 3:
-            DrawBox(I_WatereObj[2].pos.x + i, I_WatereObj[2].pos.y + i, I_WatereObj[2].rel_pos.x - i, I_WatereObj[2].rel_pos.y - i, cr, false);
-            break;
-        case 4:
-            DrawBox(I_WatereObj[3].pos.x + i, I_WatereObj[3].pos.y + i, I_WatereObj[3].rel_pos.x - i, I_WatereObj[3].rel_pos.y - i, cr, false);
-            break;
-        case 5:
-            DrawBox(I_WatereObj[4].pos.x + i, I_WatereObj[4].pos.y + i, I_WatereObj[4].rel_pos.x - i, I_WatereObj[4].rel_pos.y - i, cr, false);
-            break;
-        default: break;
-        }
+        DrawBox(I_WatereObj[nowNum - 1].pos.x - M_MapData.scrollPos.x + i, I_WatereObj[nowNum - 1].pos.y - M_MapData.scrollPos.y + i,
+            I_WatereObj[nowNum - 1].rel_pos.x - M_MapData.scrollPos.x - i, I_WatereObj[nowNum - 1].rel_pos.y - M_MapData.scrollPos.y - i, cr, false);
     }
 }
 

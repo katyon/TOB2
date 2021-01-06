@@ -145,7 +145,7 @@ void MapData::spawnBubble(void)
                 for (int i = 0; i < PL_BUBBLE_MAX; i++)
                 {
                     if (I_PlBubbleObj[i].exist == true) continue;
-                    I_PlBubbleObj[i].init(&I_PlBubbleObj[i], MAPCHIP_SIZE * Hor + MAPCHIP_SIZE / 2 - I_PlBubbleObj[i].radius, MAPCHIP_SIZE * Ver - I_PlBubbleObj[i].radius * 2);
+                    I_PlBubbleObj[i].init(&I_PlBubbleObj[i], MAPCHIP_SIZE * Hor + MAPCHIP_SIZE / 2 - I_PlBubbleObj[i].radius - scrollPos.x, MAPCHIP_SIZE * Ver - I_PlBubbleObj[i].radius * 2 - scrollPos.y);
                     I_PlBubbleObj[i].exist = true;
                     break;
                 }

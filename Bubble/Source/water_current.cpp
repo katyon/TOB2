@@ -1,6 +1,7 @@
 #include "water_current.h"
 #include "main.h"
 #include "manage.h"
+#include "map.h"
 #include "input.h"
 #include "waterSource.h"
 #include "stage_select.h"
@@ -79,9 +80,9 @@ void Water_Current::draw()
     case 1:
         for (int i = 0; i < EFFECT_BUBBLE_MAX; i++)
         {
-            if (range == 0) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 128, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
-            if (range == 1) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 448, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
-            if (range == 2) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 704, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 0) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 128, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 1) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 448, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 2) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 704, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
         }
         break;
     case 2:
@@ -108,6 +109,24 @@ void Water_Current::draw()
             if (range == 1) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 384, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
             if (range == 2) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 832, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
         }
+        break;
+    case 5:
+        for (int i = 0; i < EFFECT_BUBBLE_MAX; i++)
+        {
+            if (range == 0) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 64, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 1) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 384, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 2) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 832, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+        }
+        break;
+    case 6:
+        for (int i = 0; i < EFFECT_BUBBLE_MAX; i++)
+        {
+            if (range == 0) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 64, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 1) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 384, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 2) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 832, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+        }
+        break;
+    default:
         break;
     }
     SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);

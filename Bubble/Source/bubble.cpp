@@ -5,6 +5,7 @@
 #include "common.h"
 #include "input.h"
 #include "main.h"
+#include "map.h"
 #include "system.h"
 
 // externêÈåæ,staticèâä˙âª ----------------------------------------------------------------------
@@ -36,7 +37,10 @@ void PlBubble::init(void)
 
 void PlBubble::update(void)
 {
-    //M_Bubble.inputDebugKey();
+#ifdef _DEBUG
+    M_Bubble.inputDebugKey();
+#endif // _DEBUG
+
     for (int i = 0; i < PL_BUBBLE_MAX; i++)
     {
         if (I_PlBubbleObj[i].exist == false) continue;
@@ -53,7 +57,8 @@ void PlBubble::draw(void)
     {
         if (I_PlBubbleObj[i].exist == false) continue;
 
-        DrawExtendGraphF(I_PlBubbleObj[i].pos.x, I_PlBubbleObj[i].pos.y, I_PlBubbleObj[i].rel_pos.x, I_PlBubbleObj[i].rel_pos.y, handle, true);
+        DrawExtendGraphF(I_PlBubbleObj[i].pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].pos.y - M_MapData.scrollPos.y,
+            I_PlBubbleObj[i].rel_pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].rel_pos.y - M_MapData.scrollPos.y, handle, true);
     }
 }
 
@@ -147,10 +152,10 @@ void PlBubble::inputDebugKey(void)
         I_PlBubbleObj[3].exist = true;
     }
 
-    //if (M_Input->GetKey(KEY_INPUT_LEFT))    I_PlBubbleObj[0].speed.x -= BUBBLE_ACCEL;
-    //if (M_Input->GetKey(KEY_INPUT_RIGHT))   I_PlBubbleObj[0].speed.x += BUBBLE_ACCEL;
-    //if (M_Input->GetKey(KEY_INPUT_UP))      I_PlBubbleObj[0].speed.y -= BUBBLE_ACCEL;
-    //if (M_Input->GetKey(KEY_INPUT_DOWN))    I_PlBubbleObj[0].speed.y += BUBBLE_ACCEL;
+    if (M_Input->GetKey(KEY_INPUT_J))    I_PlBubbleObj[0].pos.x -=10;
+    if (M_Input->GetKey(KEY_INPUT_L))   I_PlBubbleObj[0].pos.x += 10;
+    if (M_Input->GetKey(KEY_INPUT_I))      I_PlBubbleObj[0].pos.y -= 10;
+    if (M_Input->GetKey(KEY_INPUT_K))    I_PlBubbleObj[0].pos.y += 10;
 
     //if (M_Input->GetKey(KEY_INPUT_A))   I_PlBubbleObj[1].speed.x -= BUBBLE_ACCEL;
     //if (M_Input->GetKey(KEY_INPUT_D))   I_PlBubbleObj[1].speed.x += BUBBLE_ACCEL;
