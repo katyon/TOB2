@@ -38,7 +38,7 @@ void WaterSource::init(void)
         I_WatereObj[1].init(&I_WatereObj[1], 8, 10);
         I_WatereObj[2].init(&I_WatereObj[2], 12, 14);
         I_WatereObj[3].init(&I_WatereObj[3], 16, 19);
-        I_WatereObj[4].init(&I_WatereObj[4], 22, 25);
+        I_WatereObj[4].init(&I_WatereObj[4], 21, 24);
         I_WatereObj[5].init(&I_WatereObj[5], 28, 30);
         break;
     case 2:
