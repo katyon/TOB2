@@ -116,6 +116,9 @@ void MapData::draw(void)
                 }
                 DrawRectExtendGraph(MAPCHIP_SIZE * Hor - scrollPos.x, MAPCHIP_SIZE * Ver - scrollPos.y,
                     MAPCHIP_SIZE * Hor + MAPCHIP_SIZE - scrollPos.x, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE - scrollPos.y, src.x, src.y, width, height, handle, true);
+
+                DrawRectExtendGraph(MINI_MAP_FIX + MAPCHIP_SIZE_MINI * Hor, 32 + MAPCHIP_SIZE_MINI * Ver,
+                    MINI_MAP_FIX + MAPCHIP_SIZE_MINI * Hor + MAPCHIP_SIZE_MINI, 32 + MAPCHIP_SIZE_MINI * Ver + MAPCHIP_SIZE_MINI, src.x, src.y, width, height, handle, true);
             }
         }
     }

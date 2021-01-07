@@ -14,7 +14,7 @@ extern WaterObj I_WatereObj[SOURCE_MAX];
 void Water_Current::init()
 {
     handle = LoadGraph("Data\\Images\\Sprite\\bubble.png");
-    range  = 0;
+    range = 0;
     ƒ¿ = 0;
 
     for (int i = 0; i < EFFECT_BUBBLE_MAX; i++)
@@ -43,7 +43,7 @@ void Water_Current::update()
             pos_x[i] += 8;
             ƒ¿ += 2;
         }
-        if (ƒ¿ > 150 ) { ƒ¿ = 150; }
+        if (ƒ¿ > 150) { ƒ¿ = 150; }
         if (ƒ¿ > 0) { ƒ¿ -= 1; }
         if (pos_x[i] < 0.0) { pos_x[i] = 1920.0; }
         if (pos_x[i] > 1920.0) { pos_x[i] = 0.0; }
@@ -67,6 +67,15 @@ void Water_Current::update()
     case 4:
         if (range > 2) { range = 2; }
         if (range < 0) { range = 0; }
+        break;
+    case 5:
+        if (range > 2) { range = 2; }
+        if (range < 0) { range = 0; }
+        break;
+    case 6:
+        if (range > 5) { range = 5; }
+        if (range < 0) { range = 0; }
+        break;
     }
 }
 
@@ -88,7 +97,7 @@ void Water_Current::draw()
     case 2:
         for (int i = 0; i < EFFECT_BUBBLE_MAX; i++)
         {
-            if (range == 0) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] +  64, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 0) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 64, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
             if (range == 1) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 320, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
             if (range == 2) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 576, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
             if (range == 3) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 832, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
@@ -105,7 +114,7 @@ void Water_Current::draw()
     case 4:
         for (int i = 0; i < EFFECT_BUBBLE_MAX; i++)
         {
-            if (range == 0) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] +  64, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 0) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 64, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
             if (range == 1) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 384, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
             if (range == 2) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 832, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
         }
@@ -121,9 +130,12 @@ void Water_Current::draw()
     case 6:
         for (int i = 0; i < EFFECT_BUBBLE_MAX; i++)
         {
-            if (range == 0) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 64, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
-            if (range == 1) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 384, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
-            if (range == 2) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 832, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 0) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y +  1 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0);}
+            if (range == 1) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y +  6 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 2) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 11 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 3) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 18 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 4) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 24 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 5) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 28 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
         }
         break;
     default:

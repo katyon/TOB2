@@ -7,10 +7,12 @@
 class WaterObj
 {
 public:
-    void init(WaterObj* obj, float posY, float rel_posY);
+    void init(WaterObj* obj, float chipY, float rel_chipY);
 
     vec2f   pos;
     vec2f   rel_pos;
+    vec2f   mini_pos;
+    vec2f   mini_rel_pos;
     int     num;
     bool    exist = false;
 };
@@ -32,4 +34,5 @@ private:
     int jetSH;
     bool once;
     unsigned int cr;
+    float scrollTimer;
 };

@@ -4,6 +4,7 @@
 
 #include "bubble.h"
 #include "common.h"
+#include "goals.h"
 #include "input.h"
 #include "main.h"
 #include "manage.h"
@@ -14,6 +15,7 @@
 
 // extern宣言,static初期化 ----------------------------------------------------------------------
 extern PlBubbleObj I_PlBubbleObj[PL_BUBBLE_MAX];
+extern GoalsObj    I_GoalsObj[GOALS_MAX];
 
 // 関数 ----------------------------------------------------------------------------------------
 // デバック文字を描画
@@ -22,10 +24,10 @@ void System::drawDebugString()
     SetFontSize(25);
     cr = GetColor(200, 0, 0);
 
-    DrawFormatString(0, 0, cr, "Title :Control + 1");
-    DrawFormatString(0, 20, cr, "Choice:Control + 2");
-    DrawFormatString(0, 40, cr, "Game  :Control + 3");
-    DrawFormatString(0, 60, cr, "Editor:Control + 4");
+    DrawFormatString(0, 0, cr, "Title :Control+1");
+    DrawFormatString(0, 20, cr, "Choice:Control+2");
+    DrawFormatString(0, 40, cr, "Game  :Control+3");
+    DrawFormatString(0, 60, cr, "Editor:Control+4");
     DrawFormatString(0, 80, cr, "gameClear:%d", M_GameManager.clear);
 
     DrawFormatString(270, 0, cr, "bubblePosX  %f", I_PlBubbleObj[0].pos.x);
