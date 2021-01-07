@@ -28,6 +28,7 @@ void MapData::init(void)
     goals = LoadGraph("Data\\Images\\Sprite\\goals.png");
     M_MapData.setMapData();
     M_MapData.spawnBubble();
+    scrollPos.set(0, 0);
 }
 
 void MapData::update(void)
@@ -39,7 +40,50 @@ void MapData::update(void)
         M_MapData.collMapChipWithBubble(&I_PlBubbleObj[i]);
         M_MapData.collGoalsWithBubble(&I_PlBubbleObj[i]);
     }
+
+#ifdef _DEBUG
+    if (M_Input->GetKey(KEY_INPUT_A)) scrollPos.x -= 10;
+    if (M_Input->GetKey(KEY_INPUT_D)) scrollPos.x += 10;
+    if (M_Input->GetKey(KEY_INPUT_W)) scrollPos.y -= 10;
+    if (M_Input->GetKey(KEY_INPUT_S)) scrollPos.y += 10;
+#endif // _DEBUG
+
 }
+
+//void MapData::draw(void)
+//{
+//    for (int Ver = 0; Ver < MAPCHIP_V_MAX; Ver++)
+//    {
+//        for (int Hor = 0; Hor < MAPCHIP_H_MAX; Hor++)
+//        {
+//            //if (mapData[Ver][Hor] == GoalSpawner)
+//            //{
+//            //    src.set(0, 0);
+//            //    DrawRectExtendGraph(MAPCHIP_SIZE * Hor, MAPCHIP_SIZE * Ver, MAPCHIP_SIZE * Hor + MAPCHIP_SIZE, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE, src.x, src.y, 300, 300, goals, true);
+//            //}
+//            //else
+//            {
+//                switch (mapData[Ver][Hor])
+//                {
+//                case Void:          src.set(130 * 0, 130 * 0);  break;
+//                case LFloor:        src.set(130 * 1, 130 * 0);  break;
+//                case Floor:         src.set(130 * 2, 130 * 0);  break;
+//                case RFloor:        src.set(130 * 3, 130 * 0);  break;
+//                case Wall:          src.set(130 * 0, 130 * 1);  break;
+//                case Lift:          src.set(130 * 1, 130 * 1);  break;
+//                case Needle:        src.set(130 * 2, 130 * 1);  break;
+//                case Splitter:      src.set(130 * 3, 130 * 1);  break;
+//                case BubbleSpawner: src.set(130 * 0, 130 * 2);  break;
+//                    //case GoalSpawner:   src.set(130 * 1, 130 * 2);  break;
+//                    //case StartSource:   src.set(130 * 2, 130 * 2);  break;
+//                    //case EndSource:     src.set(130 * 3, 130 * 2);  break;
+//                default: src.set(0, 0);  break;
+//                }
+//                DrawRectExtendGraph(MAPCHIP_SIZE * Hor, MAPCHIP_SIZE * Ver, MAPCHIP_SIZE * Hor + MAPCHIP_SIZE, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE, src.x, src.y, width, height, handle, true);
+//            }
+//        }
+//    }
+//}
 
 void MapData::draw(void)
 {
@@ -70,7 +114,12 @@ void MapData::draw(void)
                     //case EndSource:     src.set(130 * 3, 130 * 2);  break;
                 default: src.set(0, 0);  break;
                 }
-                DrawRectExtendGraph(MAPCHIP_SIZE * Hor, MAPCHIP_SIZE * Ver, MAPCHIP_SIZE * Hor + MAPCHIP_SIZE, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE, src.x, src.y, width, height, handle, true);
+                DrawRectExtendGraph(MAPCHIP_SIZE * Hor - scrollPos.x, MAPCHIP_SIZE * Ver - scrollPos.y,
+                    MAPCHIP_SIZE * Hor + MAPCHIP_SIZE - scrollPos.x, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE - scrollPos.y, src.x, src.y, width, height, handle, true);
+
+                // minimap
+                DrawRectExtendGraph(MINI_MAP_FIX + MAPCHIP_SIZE_MINI * Hor, 32 + MAPCHIP_SIZE_MINI * Ver,
+                    MINI_MAP_FIX + MAPCHIP_SIZE_MINI * Hor + MAPCHIP_SIZE_MINI, 32 + MAPCHIP_SIZE_MINI * Ver + MAPCHIP_SIZE_MINI, src.x, src.y, width, height, handle, true);
             }
         }
     }
@@ -100,7 +149,7 @@ void MapData::spawnBubble(void)
                 for (int i = 0; i < PL_BUBBLE_MAX; i++)
                 {
                     if (I_PlBubbleObj[i].exist == true) continue;
-                    I_PlBubbleObj[i].init(&I_PlBubbleObj[i], MAPCHIP_SIZE * Hor + MAPCHIP_SIZE / 2 - I_PlBubbleObj[i].radius, MAPCHIP_SIZE * Ver - I_PlBubbleObj[i].radius * 2);
+                    I_PlBubbleObj[i].init(&I_PlBubbleObj[i], MAPCHIP_SIZE * Hor + MAPCHIP_SIZE / 2 - I_PlBubbleObj[i].radius - scrollPos.x, MAPCHIP_SIZE * Ver - I_PlBubbleObj[i].radius * 2 - scrollPos.y);
                     I_PlBubbleObj[i].exist = true;
                     break;
                 }

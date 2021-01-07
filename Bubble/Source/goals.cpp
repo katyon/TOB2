@@ -14,10 +14,12 @@ extern PlBubbleObj I_PlBubbleObj[PL_BUBBLE_MAX];
 extern GoalsObj    I_GoalsObj[GOALS_MAX];
 
 // ŠÖ” ----------------------------------------------------------------------------------------
-void GoalsObj::init(GoalsObj* obj, float posX, float posY, int rateX, int rateY, int Num)
+void GoalsObj::init(GoalsObj* obj, float chipX, float chipY, int rateX, int rateY, int Num)
 {
-    obj->pos.set(posX, posY);
-    obj->rel_pos.set(posX + (MAPCHIP_SIZE * rateX), posY + (MAPCHIP_SIZE * rateY));
+    obj->pos.set(chipX * MAPCHIP_SIZE, chipY * MAPCHIP_SIZE);
+    obj->rel_pos.set(pos.x + (MAPCHIP_SIZE * rateX), pos.y + (MAPCHIP_SIZE * rateY));
+    obj->mini_pos.set(MINI_MAP_FIX + chipX * MAPCHIP_SIZE_MINI, 32 + chipY * MAPCHIP_SIZE_MINI);
+    obj->mini_rel_pos.set(mini_pos.x + (MAPCHIP_SIZE_MINI * rateX), mini_pos.y + (MAPCHIP_SIZE_MINI * rateY));
     obj->num = Num;
     obj->src.set(0, 0);
     obj->exist = false;
@@ -52,6 +54,12 @@ void Goals::init(void)
         I_GoalsObj[0].init(&I_GoalsObj[0], 6 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 3);
         I_GoalsObj[1].init(&I_GoalsObj[1], 14 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 4);
         I_GoalsObj[2].init(&I_GoalsObj[2], 22 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 3);
+        break;
+    case 6:
+        maxNum = 3;
+        I_GoalsObj[0].init(&I_GoalsObj[0], 3, 0, 2, 1, 2);
+        I_GoalsObj[1].init(&I_GoalsObj[1], 9, 0, 5, 1, 5);
+        I_GoalsObj[2].init(&I_GoalsObj[2], 17, 0, 3, 1, 3);
         break;
     default:
         maxNum = 1;
@@ -161,19 +169,51 @@ void Goals::update(void)
     }
 }
 
+//void Goals::draw(void)
+//{
+//    for (int i = 0; i < GOALS_MAX; i++)
+//    {
+//        if (I_GoalsObj[i].exist == false) continue;
+//        DrawRectExtendGraph(I_GoalsObj[i].pos.x, I_GoalsObj[i].pos.y, I_GoalsObj[i].rel_pos.x, I_GoalsObj[i].rel_pos.y, I_GoalsObj[i].src.x, I_GoalsObj[i].src.y, 300, 300, handle, true);
+//
+//        if (I_GoalsObj[i].clear == true)
+//        {
+//            for (int j = 0; j < 7; ++j)
+//            {
+//                DrawCircle(I_GoalsObj[i].pos.x + (I_GoalsObj[i].rel_pos.x - I_GoalsObj[i].pos.x) / 2,
+//                    I_GoalsObj[i].pos.y + (I_GoalsObj[i].rel_pos.y - I_GoalsObj[i].pos.y) / 2, 32 - j, GetColor(0, 200, 0), false);
+//            }
+//        }
+//    }
+//}
+
 void Goals::draw(void)
 {
     for (int i = 0; i < GOALS_MAX; i++)
     {
         if (I_GoalsObj[i].exist == false) continue;
-        DrawRectExtendGraph(I_GoalsObj[i].pos.x, I_GoalsObj[i].pos.y, I_GoalsObj[i].rel_pos.x, I_GoalsObj[i].rel_pos.y, I_GoalsObj[i].src.x, I_GoalsObj[i].src.y, 300, 300, handle, true);
+        DrawRectExtendGraph(I_GoalsObj[i].pos.x - M_MapData.scrollPos.x, I_GoalsObj[i].pos.y - M_MapData.scrollPos.y,
+            I_GoalsObj[i].rel_pos.x - M_MapData.scrollPos.x, I_GoalsObj[i].rel_pos.y - M_MapData.scrollPos.y, I_GoalsObj[i].src.x, I_GoalsObj[i].src.y, 300, 300, handle, true);
 
         if (I_GoalsObj[i].clear == true)
         {
             for (int j = 0; j < 7; ++j)
             {
-                DrawCircle(I_GoalsObj[i].pos.x + (I_GoalsObj[i].rel_pos.x - I_GoalsObj[i].pos.x) / 2,
-                    I_GoalsObj[i].pos.y + (I_GoalsObj[i].rel_pos.y - I_GoalsObj[i].pos.y) / 2, 32 - j, GetColor(0, 200, 0), false);
+                DrawCircle(I_GoalsObj[i].pos.x + (I_GoalsObj[i].rel_pos.x - I_GoalsObj[i].pos.x) / 2 - M_MapData.scrollPos.x,
+                    I_GoalsObj[i].pos.y + (I_GoalsObj[i].rel_pos.y - I_GoalsObj[i].pos.y) / 2 - M_MapData.scrollPos.y, (32 - j), GetColor(0, 200, 0), false);
+            }
+        }
+
+        // minimap
+        DrawRectExtendGraph(I_GoalsObj[i].mini_pos.x, I_GoalsObj[i].mini_pos.y,
+            I_GoalsObj[i].mini_rel_pos.x, I_GoalsObj[i].mini_rel_pos.y, I_GoalsObj[i].src.x, I_GoalsObj[i].src.y, 300, 300, handle, true);
+
+        if (I_GoalsObj[i].clear == true)
+        {
+            for (int j = 0; j < 7; ++j)
+            {
+                DrawCircle(I_GoalsObj[i].mini_pos.x + (I_GoalsObj[i].mini_rel_pos.x - I_GoalsObj[i].mini_pos.x) / 2,
+                    I_GoalsObj[i].mini_pos.y + (I_GoalsObj[i].mini_rel_pos.y - I_GoalsObj[i].mini_pos.y) / 2, (32 - j) * 0.3125, GetColor(0, 200, 0), false);
             }
         }
     }

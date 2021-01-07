@@ -62,6 +62,10 @@ void Stage_Select::update()
 
     if (select > STAGE_MAX) { select = 1; }
     if (select < 1) { select = STAGE_MAX; }
+    
+#ifdef _DEBUG
+    //select = 6;
+#endif // _DEBUG
 }
 
 void Stage_Select::draw()
