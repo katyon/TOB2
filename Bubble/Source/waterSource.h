@@ -26,9 +26,9 @@ public:
     void draw(void);
     void end(void);
 
+    int maxNum;
 private:
     int nowNum;
-    int maxNum;
     int handle;
     int decisionSH;
     int jetSH;

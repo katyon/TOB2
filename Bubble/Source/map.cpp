@@ -287,12 +287,14 @@ void MapData::collMapChipWithBubble(PlBubbleObj* obj)
                 case Splitter:
                     PlaySoundMem(divisionSH, DX_PLAYTYPE_BACK, true);
 
-                    obj->pos.x -= MAPCHIP_SIZE / 2 - 10;
                     obj->pos.y -= MAPCHIP_SIZE + obj->radius * 3;
-                    obj->speed.x = -2;
+
                     if (obj->level > 1)
                     {
+                        obj->pos.x -= MAPCHIP_SIZE / 2 - 10;
+                        obj->speed.x = -2;
                         obj->level -= 1;
+
                         for (int i = 0; i < PL_BUBBLE_MAX; i++)
                         {
                             if (I_PlBubbleObj[i].exist == true) continue;

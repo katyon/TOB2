@@ -16,7 +16,7 @@ void Water_Current::init()
     handle = LoadGraph("Data\\Images\\Sprite\\bubble.png");
     range = 0;
     ƒ¿ = 0;
-    
+
     for (int i = 0; i < EFFECT_BUBBLE_MAX; i++)
     {
         pos_x[i] = i * 100;
@@ -45,19 +45,19 @@ void Water_Current::update()
         }
         if (ƒ¿ > 150) { ƒ¿ = 150; }
         if (ƒ¿ > 0) { ƒ¿ -= 1; }
-        if (pos_x[i] < 0.0) { pos_x[i] = 1920.0; }
-        if (pos_x[i] > 1920.0) { pos_x[i] = 0.0; }
+        if (pos_x[i] < 0.0) { pos_x[i] = MAPCHIP_SIZE * 21; }
+        if (pos_x[i] > MAPCHIP_SIZE * 21) { pos_x[i] = 0.0; }
     }
     if (M_Input->GetKeyDown(KEY_INPUT_UP)) { range--; ƒ¿ = 0; }
     if (M_Input->GetKeyDown(KEY_INPUT_DOWN)) { range++; ƒ¿ = 0; }
     switch (M_Stage_Select.select)
     {
     case 1:
-        if (range > 2) { range = 2; }
+        if (range > 6) { range = 6; }
         if (range < 0) { range = 0; }
         break;
     case 2:
-        if (range > 3) { range = 3; }
+        if (range > 7) { range = 7; }
         if (range < 0) { range = 0; }
         break;
     case 3:
@@ -76,6 +76,10 @@ void Water_Current::update()
         if (range > 5) { range = 5; }
         if (range < 0) { range = 0; }
         break;
+    case 7:
+        if (range > 6) { range = 6; }
+        if (range < 0) { range = 0; }
+        break;
     }
 }
 
@@ -89,18 +93,24 @@ void Water_Current::draw()
     case 1:
         for (int i = 0; i < EFFECT_BUBBLE_MAX; i++)
         {
-            if (range == 0) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 128, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
-            if (range == 1) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 448, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
-            if (range == 2) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 704, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 0) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 3 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 1) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 8 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 2) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 12 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 3) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 16 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 4) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 21 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 5) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 27 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
         }
         break;
     case 2:
         for (int i = 0; i < EFFECT_BUBBLE_MAX; i++)
         {
-            if (range == 0) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 64, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
-            if (range == 1) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 320, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
-            if (range == 2) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 576, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
-            if (range == 3) { DrawRectRotaGraph2F(pos_x[i], pos_y[i] + 832, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 0) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 2 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 1) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 6 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 2) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 10 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 3) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 15 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 4) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 19 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 5) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 23 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 6) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 28 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
         }
         break;
     case 3:
@@ -133,8 +143,8 @@ void Water_Current::draw()
     case 6:
         for (int i = 0; i < EFFECT_BUBBLE_MAX; i++)
         {
-            if (range == 0) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y +  1 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0);}
-            if (range == 1) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y +  6 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 0) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 1 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
+            if (range == 1) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 6 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
             if (range == 2) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 11 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
             if (range == 3) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 18 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }
             if (range == 4) { DrawRectRotaGraph2F(pos_x[i] - M_MapData.scrollPos.x, pos_y[i] - M_MapData.scrollPos.y + 24 * MAPCHIP_SIZE, 0, 0, 300, 300, 150, 150, 0.05, 0, handle, true, 0, 0); }

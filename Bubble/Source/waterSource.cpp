@@ -4,6 +4,7 @@
 #include "bubble.h"
 #include "input.h"
 #include "waterSource.h"
+#include "water_current.h"
 #include "stage_select.h"
 #include "system.h"
 #include "map.h"
@@ -93,6 +94,7 @@ void WaterSource::init(void)
     once = true;
     scrollTimer = 1;
     nowNum = maxNum - 1;
+    M_Water_Current.range = maxNum - 2;
 }
 
 void WaterSource::update(void)

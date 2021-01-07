@@ -2,7 +2,7 @@
 #include "singleton.h"
 #include "vec2.h"
 // íËêî -----------------------------------------------------------------------------------------
-#define EFFECT_BUBBLE_MAX      (20)
+#define EFFECT_BUBBLE_MAX      (14)
 #define WATER_ACCEL    (0.15f)
 #define WATER_DECEL    (0.1f)
 #define EFFECT_SPEED_MAX    (5.0f)
@@ -14,12 +14,12 @@ class Water_Current : public Singleton<Water_Current>
 {
 private:
     int handle;
-    int range;
     float pos_x[EFFECT_BUBBLE_MAX];
     float pos_y[EFFECT_BUBBLE_MAX];
 
 public:
     float Éø = 0; // ìßñæìx
+    int range;
     void init(void);
     void update(void);
     void draw(void);
