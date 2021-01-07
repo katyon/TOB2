@@ -285,14 +285,21 @@ void Editor::draw(void)
             case LFloor:        mapSrc.set(130 * 1, 130 * 0);  break;
             case Floor:         mapSrc.set(130 * 2, 130 * 0);  break;
             case RFloor:        mapSrc.set(130 * 3, 130 * 0);  break;
-            case Wall:          mapSrc.set(130 * 0, 130 * 1);  break;
-            case Lift:          mapSrc.set(130 * 1, 130 * 1);  break;
+            case LFloor2:       mapSrc.set(130 * 0, 130 * 1);  break;
+            case RFloor2:       mapSrc.set(130 * 1, 130 * 1);  break;
             case Needle:        mapSrc.set(130 * 2, 130 * 1);  break;
             case Splitter:      mapSrc.set(130 * 3, 130 * 1);  break;
             case BubbleSpawner: mapSrc.set(130 * 0, 130 * 2);  break;
             case GoalSpawner:   mapSrc.set(130 * 1, 130 * 2);  break;
             case StartSource:   mapSrc.set(130 * 2, 130 * 2);  break;
             case EndSource:     mapSrc.set(130 * 3, 130 * 2);  break;
+            case ULCorner:      mapSrc.set(130 * 0, 130 * 3);  break;
+            case URCorner:      mapSrc.set(130 * 1, 130 * 3);  break;
+            case DLCorner:      mapSrc.set(130 * 2, 130 * 3);  break;
+            case DRCorner:      mapSrc.set(130 * 3, 130 * 3);  break;
+            case UFloor:        mapSrc.set(130 * 0, 130 * 4);  break;
+            case DFloor:        mapSrc.set(130 * 1, 130 * 4);  break;
+            case NOFloor:       mapSrc.set(130 * 2, 130 * 4);  break;
             default: mapSrc.set(0, 0);  break;
             }
             DrawRectExtendGraph(MAPCHIP_SIZE * Hor - M_Editor.mapPos.x, MAPCHIP_SIZE * Ver - M_Editor.mapPos.y, MAPCHIP_SIZE * Hor - M_Editor.mapPos.x + MAPCHIP_SIZE, MAPCHIP_SIZE * Ver - M_Editor.mapPos.y + MAPCHIP_SIZE, mapSrc.x, mapSrc.y, 130, 130, chipHND, true);
@@ -308,14 +315,21 @@ void Editor::draw(void)
         case LFloor:        mapSrc.set(130 * 1, 130 * 0);  break;
         case Floor:         mapSrc.set(130 * 2, 130 * 0);  break;
         case RFloor:        mapSrc.set(130 * 3, 130 * 0);  break;
-        case Wall:          mapSrc.set(130 * 0, 130 * 1);  break;
-        case Lift:          mapSrc.set(130 * 1, 130 * 1);  break;
+        case LFloor2:       mapSrc.set(130 * 0, 130 * 1);  break;
+        case RFloor2:       mapSrc.set(130 * 1, 130 * 1);  break;
         case Needle:        mapSrc.set(130 * 2, 130 * 1);  break;
         case Splitter:      mapSrc.set(130 * 3, 130 * 1);  break;
         case BubbleSpawner: mapSrc.set(130 * 0, 130 * 2);  break;
         case GoalSpawner:   mapSrc.set(130 * 1, 130 * 2);  break;
         case StartSource:   mapSrc.set(130 * 2, 130 * 2);  break;
         case EndSource:     mapSrc.set(130 * 3, 130 * 2);  break;
+        case ULCorner:      mapSrc.set(130 * 0, 130 * 3);  break;
+        case URCorner:      mapSrc.set(130 * 1, 130 * 3);  break;
+        case DLCorner:      mapSrc.set(130 * 2, 130 * 3);  break;
+        case DRCorner:      mapSrc.set(130 * 3, 130 * 3);  break;
+        case UFloor:        mapSrc.set(130 * 0, 130 * 4);  break;
+        case DFloor:        mapSrc.set(130 * 1, 130 * 4);  break;
+        case NOFloor:       mapSrc.set(130 * 2, 130 * 4);  break;
         default: mapSrc.set(0, 0);  break;
         }
         DrawRectExtendGraph((mousePos.x + mousePosBuf.x % MAPCHIP_SIZE) / MAPCHIP_SIZE * MAPCHIP_SIZE, (mousePos.y + mousePosBuf.y % MAPCHIP_SIZE) / MAPCHIP_SIZE * MAPCHIP_SIZE,
@@ -331,8 +345,8 @@ void Editor::draw(void)
     DrawFormatString(10, 30, cr, "1キー:地形(左)");
     DrawFormatString(10, 60, cr, "2キー:地形(中)");
     DrawFormatString(10, 90, cr, "3キー:地形(右)");
-    DrawFormatString(10, 120, cr, "4キー:壁");
-    DrawFormatString(10, 150, cr, "5キー:台");
+    DrawFormatString(10, 120, cr, "4キー:地形(連続左)");
+    DrawFormatString(10, 150, cr, "5キー:地形(連続右)");
     DrawFormatString(10, 180, cr, "6キー:針");
     DrawFormatString(10, 210, cr, "7キー:分割");
     DrawFormatString(10, 240, cr, "8キー:湧き");
@@ -357,14 +371,21 @@ void Editor::draw(void)
     DrawFormatString(1700, 60, cr, "1番:地形(左)");
     DrawFormatString(1700, 90, cr, "2番:地形(中)");
     DrawFormatString(1700, 120, cr, "3番:地形(右)");
-    DrawFormatString(1700, 150, cr, "4番:壁");
-    DrawFormatString(1700, 180, cr, "5番:台");
+    DrawFormatString(1700, 150, cr, "4番:地形(連続左)");
+    DrawFormatString(1700, 180, cr, "5番:地形(連続右)");
     DrawFormatString(1700, 210, cr, "6番:針");
     DrawFormatString(1700, 240, cr, "7番:分割");
     DrawFormatString(1700, 270, cr, "8番:湧き");
     DrawFormatString(1700, 300, cr, "9番:ゴール");
     DrawFormatString(1700, 330, cr, "10番:水流左上");
     DrawFormatString(1700, 360, cr, "11番:水流右下");
+    DrawFormatString(1700, 390, cr, "12番:地形(左上)");
+    DrawFormatString(1700, 420, cr, "13番:地形(右上)");
+    DrawFormatString(1700, 450, cr, "14番:地形(左下)");
+    DrawFormatString(1700, 480, cr, "15番:地形(右下)");
+    DrawFormatString(1700, 510, cr, "16番:地形(上)");
+    DrawFormatString(1700, 540, cr, "17番:地形(下)");
+    DrawFormatString(1700, 570, cr, "18番:地形(無)");
 
     if (saveTimer > 300)
     {

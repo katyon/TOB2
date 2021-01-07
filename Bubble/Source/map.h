@@ -14,9 +14,11 @@
 enum ChipData
 {
     Void, LFloor, Floor, RFloor,
-    Wall, Lift, Needle, Splitter,
-    BubbleSpawner, GoalSpawner, 
-    StartSource, EndSource, SubGoal
+    LFloor2, RFloor2, Needle, Splitter,
+    BubbleSpawner, GoalSpawner,
+    StartSource, EndSource,
+    ULCorner, URCorner, DLCorner, DRCorner,
+    UFloor, DFloor, NOFloor
 };
 // ƒNƒ‰ƒX --------------------------------------------------------------
 #define M_MapData MapData::getInstance()

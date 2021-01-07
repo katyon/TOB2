@@ -3,7 +3,7 @@
 #include "singleton.h"
 #include "vec2.h"
 // íËêî ----------------------------------------------------------------------------
-#define CHIP_ALLNUM (12)
+#define CHIP_ALLNUM (19)
 
 enum StateEditor { Init, Select, Mode, Update };
 enum StageNum { Stage1, Stage2, Stage3, Stage4, Stage5, Stage6 };

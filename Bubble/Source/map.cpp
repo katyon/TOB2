@@ -104,14 +104,21 @@ void MapData::draw(void)
                 case LFloor:        src.set(130 * 1, 130 * 0);  break;
                 case Floor:         src.set(130 * 2, 130 * 0);  break;
                 case RFloor:        src.set(130 * 3, 130 * 0);  break;
-                case Wall:          src.set(130 * 0, 130 * 1);  break;
-                case Lift:          src.set(130 * 1, 130 * 1);  break;
+                case LFloor2:       src.set(130 * 0, 130 * 1);  break;
+                case RFloor2:       src.set(130 * 1, 130 * 1);  break;
                 case Needle:        src.set(130 * 2, 130 * 1);  break;
                 case Splitter:      src.set(130 * 3, 130 * 1);  break;
                 case BubbleSpawner: src.set(130 * 0, 130 * 2);  break;
                     //case GoalSpawner:   src.set(130 * 1, 130 * 2);  break;
                     //case StartSource:   src.set(130 * 2, 130 * 2);  break;
                     //case EndSource:     src.set(130 * 3, 130 * 2);  break;
+                case ULCorner:      src.set(130 * 0, 130 * 3);  break;
+                case URCorner:      src.set(130 * 1, 130 * 3);  break;
+                case DLCorner:      src.set(130 * 2, 130 * 3);  break;
+                case DRCorner:      src.set(130 * 3, 130 * 3);  break;
+                case UFloor:        src.set(130 * 0, 130 * 4);  break;
+                case DFloor:        src.set(130 * 1, 130 * 4);  break;
+                case NOFloor:       src.set(130 * 2, 130 * 4);  break;
                 default: src.set(0, 0);  break;
                 }
                 DrawRectExtendGraph(MAPCHIP_SIZE * Hor - scrollPos.x, MAPCHIP_SIZE * Ver - scrollPos.y,
