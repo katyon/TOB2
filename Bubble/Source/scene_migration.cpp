@@ -17,6 +17,7 @@ void Scene_Migration::init()
         pos_y[i] = 1080;
     }
     once = true;
+    ƒ¿ = 0;
 }
 
 void Scene_Migration::update0()
@@ -24,6 +25,7 @@ void Scene_Migration::update0()
     if (once == true)
     {
         PlaySoundMem(zavanSH, DX_PLAYTYPE_BACK, true);
+        ƒ¿ = 255;
         once = false;
     }
 
@@ -31,6 +33,7 @@ void Scene_Migration::update0()
     if (timer > 100)
     {
         movement = Quint::easeOut(timer - 100, 0, 1, 240);
+        ƒ¿ -= 255 / 100;
     }
     changing = 1080 * movement;
     Y = changing;
@@ -70,14 +73,17 @@ void Scene_Migration::update1()
         if (timer < 60)
         {
             movement = Quint::easeOut(timer, 0, 1, 60);
+            ƒ¿ += 255 / 60;
         }
         else if (timer < 120)
         {
             movement = 1;
+            ƒ¿ = 255;
         }
         else
         {
             movement = Quint::easeIn(timer - 120, 1, 2, 90);
+            ƒ¿ -= 255 / 60;
         }
         //else
         //{
@@ -110,7 +116,10 @@ void Scene_Migration::update1()
 
 void Scene_Migration::draw()
 {
-    DrawGraph(0, Y, handle1, false);
+    SetDrawBlendMode(DX_BLENDMODE_ALPHA, ƒ¿);
+    DrawGraph(0, 0, handle1, false);
+    SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
+
     for (int i = 0; i < MIGRATION_MAX; i += 3)
     {
         DrawRotaGraph(pos_x[i] +   0, pos_y[i] + i * 250 + 1080, 3.5, 0, handle0, true);

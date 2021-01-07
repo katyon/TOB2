@@ -25,6 +25,8 @@ private:
 
     bool  once;
 
+    float ƒ¿;        // “§–¾“x
+
 public:
     void init(void);
     void update0(void);
