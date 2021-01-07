@@ -40,12 +40,14 @@ void Goals::init(void)
         I_GoalsObj[1].init(&I_GoalsObj[1], 12, 15, 2, 1, 3);
         break;
     case 2:
-        maxNum = 1;
-        I_GoalsObj[0].init(&I_GoalsObj[0], 2 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 8);
+        maxNum = 2;
+        I_GoalsObj[0].init(&I_GoalsObj[0], 2, 0, 5, 2, 4);
+        I_GoalsObj[1].init(&I_GoalsObj[1], 15, 0, 5, 2, 4);
         break;
     case 3:
-        maxNum = 1;
-        I_GoalsObj[0].init(&I_GoalsObj[0], 24 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 4, 2, 9);
+        maxNum = 2;
+        I_GoalsObj[0].init(&I_GoalsObj[0], 2, 2, 3, 1, 4);
+        I_GoalsObj[1].init(&I_GoalsObj[1], 12, 15, 2, 1, 3);
         break;
     case 4:
         maxNum = 3;
