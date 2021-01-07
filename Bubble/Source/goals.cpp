@@ -36,10 +36,8 @@ void Goals::init(void)
     {
     case 1:
         maxNum = 2;
-        //I_GoalsObj[0].init(&I_GoalsObj[0], 0,0, 0);
-        //I_GoalsObj[1].init(&I_GoalsObj[1], 46 * 64, 64 ,0);
-        I_GoalsObj[0].init(&I_GoalsObj[0], 8 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 4);
-        I_GoalsObj[1].init(&I_GoalsObj[1], 18 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 3);
+        I_GoalsObj[0].init(&I_GoalsObj[0], 2, 2, 3, 1, 4);
+        I_GoalsObj[1].init(&I_GoalsObj[1], 12, 15, 2, 1, 3);
         break;
     case 2:
         maxNum = 1;

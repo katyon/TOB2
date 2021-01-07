@@ -38,6 +38,7 @@ public:
 
     vec2i scrollPos;
 private:
+    int minimapHND;
     int divisionSH;
     int breakSH;
     int goals;

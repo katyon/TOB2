@@ -23,6 +23,7 @@ void MapData::init(void)
     width = 130;
     height = 130;
     handle = LoadGraph("Data\\Images\\Sprite\\MapChip.png");
+    minimapHND = LoadGraph("Data\\Images\\Sprite\\minimap.png");
     divisionSH = LoadSoundMem("Data\\Sounds\\division.mp3");
     breakSH = LoadSoundMem("Data\\Sounds\\break.mp3");
     goals = LoadGraph("Data\\Images\\Sprite\\goals.png");
@@ -130,12 +131,15 @@ void MapData::draw(void)
             }
         }
     }
+
+    DrawGraph(MINI_MAP_FIX - 10, 32 - 10, minimapHND, true);
 }
 
 void MapData::end(void)
 {
     DeleteGraph(handle);
     DeleteGraph(goals);
+    DeleteGraph(minimapHND);
     DeleteSoundMem(divisionSH);
     DeleteSoundMem(breakSH);
 }
