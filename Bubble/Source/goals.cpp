@@ -51,9 +51,9 @@ void Goals::init(void)
         break;
     case 4:
         maxNum = 3;
-        I_GoalsObj[0].init(&I_GoalsObj[0], 6 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 3);
-        I_GoalsObj[1].init(&I_GoalsObj[1], 14 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 4);
-        I_GoalsObj[2].init(&I_GoalsObj[2], 22 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 3);
+        I_GoalsObj[0].init(&I_GoalsObj[0], 3, 0, 2, 1, 2);
+        I_GoalsObj[1].init(&I_GoalsObj[1], 9, 0, 5, 1, 5);
+        I_GoalsObj[2].init(&I_GoalsObj[2], 17, 0, 3, 1, 3);
         break;
     case 6:
         maxNum = 3;
@@ -163,6 +163,27 @@ void Goals::update(void)
         if (I_GoalsObj[0].clear == true &&
             I_GoalsObj[1].clear == true &&
             I_GoalsObj[2].clear == true) M_GameManager.clear = true;
+        break;
+    case 4:
+        if (I_GoalsObj[0].clear == true &&
+            I_GoalsObj[1].clear == true &&
+            I_GoalsObj[2].clear == true &&
+            I_GoalsObj[3].clear == true) M_GameManager.clear = true;
+        break;
+    case 5:
+        if (I_GoalsObj[0].clear == true &&
+            I_GoalsObj[1].clear == true &&
+            I_GoalsObj[2].clear == true &&
+            I_GoalsObj[3].clear == true &&
+            I_GoalsObj[4].clear == true) M_GameManager.clear = true;
+        break;
+    case 6:
+        if (I_GoalsObj[0].clear == true &&
+            I_GoalsObj[1].clear == true &&
+            I_GoalsObj[2].clear == true &&
+            I_GoalsObj[3].clear == true &&
+            I_GoalsObj[4].clear == true &&
+            I_GoalsObj[5].clear == true) M_GameManager.clear = true;
         break;
     default:
         break;

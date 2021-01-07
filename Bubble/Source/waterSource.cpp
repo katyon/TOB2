@@ -52,10 +52,13 @@ void WaterSource::init(void)
         I_WatereObj[2].init(&I_WatereObj[2], 704, 1024);
         break;
     case 4:
-        maxNum = 3;
-        I_WatereObj[0].init(&I_WatereObj[0], 64, 320);
-        I_WatereObj[1].init(&I_WatereObj[1], 384, 576);
-        I_WatereObj[2].init(&I_WatereObj[2], 832, 1024);
+        maxNum = 6;
+        I_WatereObj[0].init(&I_WatereObj[0], 1, 4);
+        I_WatereObj[1].init(&I_WatereObj[1], 6, 8);
+        I_WatereObj[2].init(&I_WatereObj[2], 11, 12);
+        I_WatereObj[3].init(&I_WatereObj[3], 18, 21);
+        I_WatereObj[4].init(&I_WatereObj[4], 24, 26);
+        I_WatereObj[5].init(&I_WatereObj[5], 28, 30);
         break;
     case 5:
         maxNum = 3;
@@ -134,7 +137,7 @@ void WaterSource::update(void)
     if (nowNum < 1) nowNum = 1;
     if (nowNum > maxNum) nowNum = maxNum;
 
-    if (nowNum > 2 && nowNum < maxNum)
+    if (nowNum > 1 && nowNum < maxNum)
         M_MapData.scrollPos.y = I_WatereObj[nowNum - 1].pos.y - (1080 * 0.5) + 100;
 }
 
