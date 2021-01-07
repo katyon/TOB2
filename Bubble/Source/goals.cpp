@@ -218,6 +218,7 @@ void Goals::draw(void)
         }
     }
 }
+
 void Goals::end(void)
 {
     DeleteGraph(handle);

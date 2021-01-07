@@ -64,7 +64,7 @@ void Stage_Select::update()
     if (select < 1) { select = STAGE_MAX; }
     
 #ifdef _DEBUG
-    select = 6;
+    //select = 6;
 #endif // _DEBUG
 }
 
