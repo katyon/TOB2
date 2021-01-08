@@ -160,8 +160,9 @@ void GameManager::update(void)
             M_GameManager.init();
             M_GameBg.init();
             M_Water_Current.init();
-            M_Bubble.init();
             M_MapData.init();
+            M_Bubble.init();
+            M_MapData.spawnBubble();
             M_WaterSource.init();
             M_Goals.init();
         }
