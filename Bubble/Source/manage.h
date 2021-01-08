@@ -55,10 +55,12 @@ private:
     unsigned int cr = 0;
     int state = 0;
     int handle;
+    int bubble;
     int bgmSH;
     bool once;
     int num;
     int timer;
+    float bubble_magnification;
     vec2f   pos;
     vec2f   src;
 };
