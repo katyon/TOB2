@@ -34,15 +34,6 @@ void WaterSource::init(void)
     switch (M_Stage_Select.select)
     {
     case 1:
-        maxNum = 6;
-        I_WatereObj[0].init(&I_WatereObj[0], 3, 6);
-        I_WatereObj[1].init(&I_WatereObj[1], 8, 10);
-        I_WatereObj[2].init(&I_WatereObj[2], 12, 14);
-        I_WatereObj[3].init(&I_WatereObj[3], 16, 19);
-        I_WatereObj[4].init(&I_WatereObj[4], 21, 24);
-        I_WatereObj[5].init(&I_WatereObj[5], 27, 29);
-        break;
-    case 2:
         maxNum = 7;
         I_WatereObj[0].init(&I_WatereObj[0], 2, 4);
         I_WatereObj[1].init(&I_WatereObj[1], 6, 8);
@@ -51,6 +42,15 @@ void WaterSource::init(void)
         I_WatereObj[4].init(&I_WatereObj[4], 19, 21);
         I_WatereObj[5].init(&I_WatereObj[5], 23, 25);
         I_WatereObj[6].init(&I_WatereObj[6], 28, 30);
+        break;
+    case 2:
+        maxNum = 6;
+        I_WatereObj[0].init(&I_WatereObj[0], 3, 6);
+        I_WatereObj[1].init(&I_WatereObj[1], 8, 10);
+        I_WatereObj[2].init(&I_WatereObj[2], 12, 14);
+        I_WatereObj[3].init(&I_WatereObj[3], 16, 19);
+        I_WatereObj[4].init(&I_WatereObj[4], 21, 24);
+        I_WatereObj[5].init(&I_WatereObj[5], 27, 29);
         break;
     case 3:
         maxNum = 3;

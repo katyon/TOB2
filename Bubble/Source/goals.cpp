@@ -36,13 +36,13 @@ void Goals::init(void)
     {
     case 1:
         maxNum = 2;
-        I_GoalsObj[0].init(&I_GoalsObj[0], 2, 2, 3, 1, 4);
-        I_GoalsObj[1].init(&I_GoalsObj[1], 12, 15, 2, 1, 3);
+        I_GoalsObj[0].init(&I_GoalsObj[0], 2, 0, 4, 2, 4);
+        I_GoalsObj[1].init(&I_GoalsObj[1], 16, 0, 4, 2, 4);
         break;
     case 2:
         maxNum = 2;
-        I_GoalsObj[0].init(&I_GoalsObj[0], 2, 0, 4, 2, 4);
-        I_GoalsObj[1].init(&I_GoalsObj[1], 16, 0, 4, 2, 4);
+        I_GoalsObj[0].init(&I_GoalsObj[0], 2, 2, 3, 1, 4);
+        I_GoalsObj[1].init(&I_GoalsObj[1], 12, 15, 2, 1, 3);
         break;
     case 3:
         maxNum = 2;
