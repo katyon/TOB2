@@ -128,12 +128,14 @@ void GameManager::init(void)
     cr = GetColor(0, 153, 255);
     state = 0;
     handle = LoadGraph("Data\\Images\\Bg\\Clear_Bg.png");
+    bubble = LoadGraph("Data\\Images\\Sprite\\bubble.png");
     bgmSH = LoadSoundMem("Data\\Sounds\\game.mp3");
     once = true;
     num = 0;
     timer = 0;
     pos.set(0, 0);
     src.set(0, 0);
+    bubble_magnification = 0.0f;
 }
 
 void GameManager::update(void)
@@ -170,7 +172,14 @@ void GameManager::update(void)
         {
         case 0:
             M_WaterSource.end();
-            state = 1;
+            if (timer < 60)
+            {
+                bubble_magnification += 0.25;
+            }
+            else
+            {
+                state = 1;
+            }
             break;
         case 1:
             num = timer / 40 % 2;
@@ -208,7 +217,11 @@ void GameManager::draw(void)
     //DrawFormatString(1220, 1030, cr, "ステージ選択へ：BackSpace");
     if (clear == true)
     {
-        DrawRectGraphF(pos.x, pos.y, src.x, src.y, 1920, 1080, handle, true, false, false);
+        DrawRotaGraph(1920 / 2, 1080 / 2, bubble_magnification, 0, bubble, TRUE);
+        if (timer > 60)
+        {
+            DrawRectGraphF(pos.x, pos.y, src.x, src.y, 1920, 1080, handle, true, false, false);
+        }
     }
 }
 
