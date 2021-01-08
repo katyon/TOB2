@@ -53,11 +53,11 @@ void Water_Current::update()
     switch (M_Stage_Select.select)
     {
     case 1:
-        if (range > 6) { range = 6; }
+        if (range > 5) { range = 5; }
         if (range < 0) { range = 0; }
         break;
     case 2:
-        if (range > 7) { range = 7; }
+        if (range > 6) { range = 6; }
         if (range < 0) { range = 0; }
         break;
     case 3:

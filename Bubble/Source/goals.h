@@ -32,4 +32,5 @@ public:
 private:
     int maxNum;
     int handle;
+    int blackHND;
 };

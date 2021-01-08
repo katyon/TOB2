@@ -24,6 +24,7 @@ void MapData::init(void)
     height = 130;
     handle = LoadGraph("Data\\Images\\Sprite\\MapChip.png");
     minimapHND = LoadGraph("Data\\Images\\Sprite\\minimap.png");
+    bubbleHND = LoadGraph("Data\\Images\\Sprite\\plBubble2.png");
     divisionSH = LoadSoundMem("Data\\Sounds\\division.mp3");
     breakSH = LoadSoundMem("Data\\Sounds\\break.mp3");
     goals = LoadGraph("Data\\Images\\Sprite\\goals.png");
@@ -133,6 +134,44 @@ void MapData::draw(void)
     }
 
     DrawGraph(MINI_MAP_FIX - 10, 32 - 10, minimapHND, true);
+    {
+        int pos_x = 0, pos_y = 0, size = 0;
+        unsigned int cr = GetColor(0, 153, 255);
+        SetFontSize(30);
+
+        pos_x = MINI_MAP_FIX;
+        pos_y = 760;
+        size = 50;
+
+        DrawRectExtendGraph(pos_x, pos_y, pos_x + size, pos_y + size, 0, 600, 300, 300, bubbleHND, true);
+        DrawFormatString(pos_x + size + 7, pos_y + 9, cr, "Å®");
+        pos_x += size + 42;
+        DrawRectExtendGraph(pos_x, pos_y, pos_x + size, pos_y + size, 300, 600, 300, 300, bubbleHND, true);
+        DrawFormatString(pos_x + size + 7, pos_y + 9, cr, "Å®");
+        pos_x += size + 42;
+        DrawRectExtendGraph(pos_x, pos_y, pos_x + size, pos_y + size, 600, 600, 300, 300, bubbleHND, true);
+        DrawFormatString(pos_x + size + 7, pos_y + 9, cr, "Å®");
+        pos_x += size + 42;
+        DrawRectExtendGraph(pos_x, pos_y, pos_x + size, pos_y + size, 0, 300, 300, 300, bubbleHND, true);
+        DrawFormatString(pos_x + size + 7, pos_y + 9, cr, "Å®");
+
+        pos_x -= (size + 42) * 3;
+        pos_y += size + 20;
+
+        DrawRectExtendGraph(pos_x, pos_y, pos_x + size, pos_y + size, 300, 300, 300, 300, bubbleHND, true);
+        DrawFormatString(pos_x + size + 7, pos_y + 9, cr, "Å®");
+        pos_x += size + 42;
+        DrawRectExtendGraph(pos_x, pos_y, pos_x + size, pos_y + size, 600, 300, 300, 300, bubbleHND, true);
+        DrawFormatString(pos_x + size + 7, pos_y + 9, cr, "Å®");
+        pos_x += size + 42;
+        DrawRectExtendGraph(pos_x, pos_y, pos_x + size, pos_y + size, 0, 0, 300, 300, bubbleHND, true);
+        DrawFormatString(pos_x + size + 7, pos_y + 9, cr, "Å®");
+        pos_x += size + 42;
+        DrawRectExtendGraph(pos_x, pos_y, pos_x + size, pos_y + size, 300, 0, 300, 300, bubbleHND, true);
+        DrawFormatString(pos_x + size + 7, pos_y + 9, cr, "Å®");
+        pos_x += size + 42;
+        DrawRectExtendGraph(pos_x, pos_y, pos_x + size, pos_y + size, 600, 0, 300, 300, bubbleHND, true);
+    }
 }
 
 void MapData::end(void)
@@ -140,6 +179,7 @@ void MapData::end(void)
     DeleteGraph(handle);
     DeleteGraph(goals);
     DeleteGraph(minimapHND);
+    DeleteGraph(bubbleHND);
     DeleteSoundMem(divisionSH);
     DeleteSoundMem(breakSH);
 }
@@ -289,11 +329,15 @@ void MapData::collMapChipWithBubble(PlBubbleObj* obj)
 
                     obj->pos.y -= MAPCHIP_SIZE + obj->radius * 3;
 
-                    if (obj->level > 1)
+                    switch (obj->level)
                     {
+                    case 1:
+
+                        break;
+                    case 2:
                         obj->pos.x -= MAPCHIP_SIZE / 2 - 10;
                         obj->speed.x = -2;
-                        obj->level -= 1;
+                        obj->level = 1;
 
                         for (int i = 0; i < PL_BUBBLE_MAX; i++)
                         {
@@ -301,10 +345,134 @@ void MapData::collMapChipWithBubble(PlBubbleObj* obj)
                             I_PlBubbleObj[i].init(&I_PlBubbleObj[i], obj->pos.x + MAPCHIP_SIZE * 2, obj->pos.y);
                             I_PlBubbleObj[i].speed.x = 2;
                             I_PlBubbleObj[i].exist = true;
-                            I_PlBubbleObj[i].level = obj->level;
+                            I_PlBubbleObj[i].level = 1;
                             break;
                         }
+                        break;
+                    case 3:
+                        obj->pos.x -= MAPCHIP_SIZE / 2 - 10;
+                        obj->speed.x = -2;
+                        obj->level = 2;
+
+                        for (int i = 0; i < PL_BUBBLE_MAX; i++)
+                        {
+                            if (I_PlBubbleObj[i].exist == true) continue;
+                            I_PlBubbleObj[i].init(&I_PlBubbleObj[i], obj->pos.x + MAPCHIP_SIZE * 2, obj->pos.y);
+                            I_PlBubbleObj[i].speed.x = 2;
+                            I_PlBubbleObj[i].exist = true;
+                            I_PlBubbleObj[i].level = 1;
+                            break;
+                        }
+                        break;
+                    case 4:
+                        obj->pos.x -= MAPCHIP_SIZE / 2 - 10;
+                        obj->speed.x = -2;
+                        obj->level = 2;
+
+                        for (int i = 0; i < PL_BUBBLE_MAX; i++)
+                        {
+                            if (I_PlBubbleObj[i].exist == true) continue;
+                            I_PlBubbleObj[i].init(&I_PlBubbleObj[i], obj->pos.x + MAPCHIP_SIZE * 2, obj->pos.y);
+                            I_PlBubbleObj[i].speed.x = 2;
+                            I_PlBubbleObj[i].exist = true;
+                            I_PlBubbleObj[i].level = 2;
+                            break;
+                        }
+                        break;
+                    case 5:
+                        obj->pos.x -= MAPCHIP_SIZE / 2 - 10;
+                        obj->speed.x = -2;
+                        obj->level = 3;
+
+                        for (int i = 0; i < PL_BUBBLE_MAX; i++)
+                        {
+                            if (I_PlBubbleObj[i].exist == true) continue;
+                            I_PlBubbleObj[i].init(&I_PlBubbleObj[i], obj->pos.x + MAPCHIP_SIZE * 2, obj->pos.y);
+                            I_PlBubbleObj[i].speed.x = 2;
+                            I_PlBubbleObj[i].exist = true;
+                            I_PlBubbleObj[i].level = 2;
+                            break;
+                        }
+                        break;
+                    case 6:
+                        obj->pos.x -= MAPCHIP_SIZE / 2 - 10;
+                        obj->speed.x = -2;
+                        obj->level = 3;
+
+                        for (int i = 0; i < PL_BUBBLE_MAX; i++)
+                        {
+                            if (I_PlBubbleObj[i].exist == true) continue;
+                            I_PlBubbleObj[i].init(&I_PlBubbleObj[i], obj->pos.x + MAPCHIP_SIZE * 2, obj->pos.y);
+                            I_PlBubbleObj[i].speed.x = 2;
+                            I_PlBubbleObj[i].exist = true;
+                            I_PlBubbleObj[i].level = 3;
+                            break;
+                        }
+                        break;
+                    case 7:
+                        obj->pos.x -= MAPCHIP_SIZE / 2 - 10;
+                        obj->speed.x = -2;
+                        obj->level = 4;
+
+                        for (int i = 0; i < PL_BUBBLE_MAX; i++)
+                        {
+                            if (I_PlBubbleObj[i].exist == true) continue;
+                            I_PlBubbleObj[i].init(&I_PlBubbleObj[i], obj->pos.x + MAPCHIP_SIZE * 2, obj->pos.y);
+                            I_PlBubbleObj[i].speed.x = 2;
+                            I_PlBubbleObj[i].exist = true;
+                            I_PlBubbleObj[i].level = 3;
+                            break;
+                        }
+                        break;
+                    case 8:
+                        obj->pos.x -= MAPCHIP_SIZE / 2 - 10;
+                        obj->speed.x = -2;
+                        obj->level = 4;
+
+                        for (int i = 0; i < PL_BUBBLE_MAX; i++)
+                        {
+                            if (I_PlBubbleObj[i].exist == true) continue;
+                            I_PlBubbleObj[i].init(&I_PlBubbleObj[i], obj->pos.x + MAPCHIP_SIZE * 2, obj->pos.y);
+                            I_PlBubbleObj[i].speed.x = 2;
+                            I_PlBubbleObj[i].exist = true;
+                            I_PlBubbleObj[i].level = 4;
+                            break;
+                        }
+                        break;
+                    case 9:
+                        obj->pos.x -= MAPCHIP_SIZE / 2 - 10;
+                        obj->speed.x = -2;
+                        obj->level = 5;
+
+                        for (int i = 0; i < PL_BUBBLE_MAX; i++)
+                        {
+                            if (I_PlBubbleObj[i].exist == true) continue;
+                            I_PlBubbleObj[i].init(&I_PlBubbleObj[i], obj->pos.x + MAPCHIP_SIZE * 2, obj->pos.y);
+                            I_PlBubbleObj[i].speed.x = 2;
+                            I_PlBubbleObj[i].exist = true;
+                            I_PlBubbleObj[i].level = 3;
+                            break;
+                        }
+                        break;
+                    default:
+                        break;
                     }
+                    //if (obj->level > 1)
+                    //{
+                    //    obj->pos.x -= MAPCHIP_SIZE / 2 - 10;
+                    //    obj->speed.x = -2;
+                    //    obj->level -= 1;
+
+                    //    for (int i = 0; i < PL_BUBBLE_MAX; i++)
+                    //    {
+                    //        if (I_PlBubbleObj[i].exist == true) continue;
+                    //        I_PlBubbleObj[i].init(&I_PlBubbleObj[i], obj->pos.x + MAPCHIP_SIZE * 2, obj->pos.y);
+                    //        I_PlBubbleObj[i].speed.x = 2;
+                    //        I_PlBubbleObj[i].exist = true;
+                    //        I_PlBubbleObj[i].level = obj->level;
+                    //        break;
+                    //    }
+                    //}
                     break;
                     // ÉSÅ[Éã
                 //case GoalSpawner:

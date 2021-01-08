@@ -106,6 +106,7 @@ void Goals::init(void)
         I_GoalsObj[i].exist = true;
     }
     handle = LoadGraph("Data\\Images\\Sprite\\goals.png");
+    blackHND = LoadGraph("Data\\Images\\Sprite\\goals_black.png");
 }
 
 void Goals::update(void)
@@ -213,29 +214,28 @@ void Goals::draw(void)
     for (int i = 0; i < GOALS_MAX; i++)
     {
         if (I_GoalsObj[i].exist == false) continue;
-        DrawRectExtendGraph(I_GoalsObj[i].pos.x - M_MapData.scrollPos.x, I_GoalsObj[i].pos.y - M_MapData.scrollPos.y,
-            I_GoalsObj[i].rel_pos.x - M_MapData.scrollPos.x, I_GoalsObj[i].rel_pos.y - M_MapData.scrollPos.y, I_GoalsObj[i].src.x, I_GoalsObj[i].src.y, 300, 300, handle, true);
 
-        if (I_GoalsObj[i].clear == true)
+        if (I_GoalsObj[i].clear == false)
         {
-            for (int j = 0; j < 7; ++j)
-            {
-                DrawCircle(I_GoalsObj[i].pos.x + (I_GoalsObj[i].rel_pos.x - I_GoalsObj[i].pos.x) / 2 - M_MapData.scrollPos.x,
-                    I_GoalsObj[i].pos.y + (I_GoalsObj[i].rel_pos.y - I_GoalsObj[i].pos.y) / 2 - M_MapData.scrollPos.y, (32 - j), GetColor(0, 200, 0), false);
-            }
+            DrawRectExtendGraph(I_GoalsObj[i].pos.x - M_MapData.scrollPos.x, I_GoalsObj[i].pos.y - M_MapData.scrollPos.y,
+                I_GoalsObj[i].rel_pos.x - M_MapData.scrollPos.x, I_GoalsObj[i].rel_pos.y - M_MapData.scrollPos.y, I_GoalsObj[i].src.x, I_GoalsObj[i].src.y, 300, 300, handle, true);
+        }
+        else
+        {
+            DrawRectExtendGraph(I_GoalsObj[i].pos.x - M_MapData.scrollPos.x, I_GoalsObj[i].pos.y - M_MapData.scrollPos.y,
+                I_GoalsObj[i].rel_pos.x - M_MapData.scrollPos.x, I_GoalsObj[i].rel_pos.y - M_MapData.scrollPos.y, I_GoalsObj[i].src.x, I_GoalsObj[i].src.y, 300, 300, blackHND, true);
         }
 
         // minimap
-        DrawRectExtendGraph(I_GoalsObj[i].mini_pos.x, I_GoalsObj[i].mini_pos.y,
-            I_GoalsObj[i].mini_rel_pos.x, I_GoalsObj[i].mini_rel_pos.y, I_GoalsObj[i].src.x, I_GoalsObj[i].src.y, 300, 300, handle, true);
-
-        if (I_GoalsObj[i].clear == true)
+        if (I_GoalsObj[i].clear == false)
         {
-            for (int j = 0; j < 7; ++j)
-            {
-                DrawCircle(I_GoalsObj[i].mini_pos.x + (I_GoalsObj[i].mini_rel_pos.x - I_GoalsObj[i].mini_pos.x) / 2,
-                    I_GoalsObj[i].mini_pos.y + (I_GoalsObj[i].mini_rel_pos.y - I_GoalsObj[i].mini_pos.y) / 2, (32 - j) * 0.3125, GetColor(0, 200, 0), false);
-            }
+            DrawRectExtendGraph(I_GoalsObj[i].mini_pos.x, I_GoalsObj[i].mini_pos.y,
+                I_GoalsObj[i].mini_rel_pos.x, I_GoalsObj[i].mini_rel_pos.y, I_GoalsObj[i].src.x, I_GoalsObj[i].src.y, 300, 300, handle, true);
+        }
+        else
+        {
+            DrawRectExtendGraph(I_GoalsObj[i].mini_pos.x, I_GoalsObj[i].mini_pos.y,
+                I_GoalsObj[i].mini_rel_pos.x, I_GoalsObj[i].mini_rel_pos.y, I_GoalsObj[i].src.x, I_GoalsObj[i].src.y, 300, 300, blackHND, true);
         }
     }
 }
@@ -243,4 +243,5 @@ void Goals::draw(void)
 void Goals::end(void)
 {
     DeleteGraph(handle);
+    DeleteGraph(blackHND);
 }

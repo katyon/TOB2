@@ -103,7 +103,7 @@ void SelectManager::update(void)
 void SelectManager::draw(void)
 {
     SetFontSize(50);
-    DrawFormatString(1350, 1020, cr, "タイトルへ：BackSpace");
+    //DrawFormatString(1350, 1020, cr, "タイトルへ：BackSpace");
     if (M_GameManager.migration == true)
     {
         if (M_Scene_Migration.getTimer() < 60)
@@ -125,7 +125,7 @@ void GameManager::init(void)
     change = false;
     clear = false;
     migration = false;
-    cr = GetColor(0, 0, 0);
+    cr = GetColor(0, 153, 255);
     state = 0;
     handle = LoadGraph("Data\\Images\\Bg\\Clear_Bg.png");
     bgmSH = LoadSoundMem("Data\\Sounds\\game.mp3");
@@ -155,13 +155,13 @@ void GameManager::update(void)
         {
             PlaySoundMem(M_TitleManager.decisionSH, DX_PLAYTYPE_BACK, true);
             M_GameManager.end();
+            M_GameManager.init();
             M_GameBg.init();
             M_Water_Current.init();
             M_Bubble.init();
             M_MapData.init();
             M_WaterSource.init();
             M_Goals.init();
-            M_GameManager.init();
         }
     }
     else
@@ -203,8 +203,9 @@ void GameManager::draw(void)
 {
     SetFontSize(50);
 
-    DrawFormatString(1580, 970, cr, "リトライ：R");
-    DrawFormatString(1220, 1030, cr, "ステージ選択へ：BackSpace");
+    DrawFormatString(1500, 940, cr, "リトライ：R");
+    DrawFormatString(1500, 1000, cr, "ポーズ　：P");
+    //DrawFormatString(1220, 1030, cr, "ステージ選択へ：BackSpace");
     if (clear == true)
     {
         DrawRectGraphF(pos.x, pos.y, src.x, src.y, 1920, 1080, handle, true, false, false);

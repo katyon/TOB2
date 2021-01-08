@@ -27,7 +27,7 @@ void PlBubbleObj::init(PlBubbleObj* obj, float posX, float posY)
 
 void PlBubble::init(void)
 {
-    handle = LoadGraph("Data\\Images\\Sprite\\plBubble.png");
+    handle = LoadGraph("Data\\Images\\Sprite\\plBubble2.png");
     integrationSH = LoadSoundMem("Data\\Sounds\\integration.mp3");
     for (int i = 0; i < PL_BUBBLE_MAX; i++)
     {
@@ -56,9 +56,50 @@ void PlBubble::draw(void)
     for (int i = 0; i < PL_BUBBLE_MAX; i++)
     {
         if (I_PlBubbleObj[i].exist == false) continue;
+        switch (I_PlBubbleObj[i].level)
+        {
+        case 1:
+            DrawRectExtendGraphF(I_PlBubbleObj[i].pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].pos.y - M_MapData.scrollPos.y,
+                I_PlBubbleObj[i].rel_pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].rel_pos.y - M_MapData.scrollPos.y, 0, 600, 300, 300, handle, true);
+            break;
+        case 2:
+            DrawRectExtendGraphF(I_PlBubbleObj[i].pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].pos.y - M_MapData.scrollPos.y,
+                I_PlBubbleObj[i].rel_pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].rel_pos.y - M_MapData.scrollPos.y, 300, 600, 300, 300, handle, true);
+            break;
+        case 3:
+            DrawRectExtendGraphF(I_PlBubbleObj[i].pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].pos.y - M_MapData.scrollPos.y,
+                I_PlBubbleObj[i].rel_pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].rel_pos.y - M_MapData.scrollPos.y, 600, 600, 300, 300, handle, true);
+            break;
+        case 4:
+            DrawRectExtendGraphF(I_PlBubbleObj[i].pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].pos.y - M_MapData.scrollPos.y,
+                I_PlBubbleObj[i].rel_pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].rel_pos.y - M_MapData.scrollPos.y, 0, 300, 300, 300, handle, true);
+            break;
+        case 5:
+            DrawRectExtendGraphF(I_PlBubbleObj[i].pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].pos.y - M_MapData.scrollPos.y,
+                I_PlBubbleObj[i].rel_pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].rel_pos.y - M_MapData.scrollPos.y, 300, 300, 300, 300, handle, true);
+            break;
+        case 6:
+            DrawRectExtendGraphF(I_PlBubbleObj[i].pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].pos.y - M_MapData.scrollPos.y,
+                I_PlBubbleObj[i].rel_pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].rel_pos.y - M_MapData.scrollPos.y, 600, 300, 300, 300, handle, true);
+            break;
+        case 7:
+            DrawRectExtendGraphF(I_PlBubbleObj[i].pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].pos.y - M_MapData.scrollPos.y,
+                I_PlBubbleObj[i].rel_pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].rel_pos.y - M_MapData.scrollPos.y, 0, 0, 300, 300, handle, true);
+            break;
+        case 8:
+            DrawRectExtendGraphF(I_PlBubbleObj[i].pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].pos.y - M_MapData.scrollPos.y,
+                I_PlBubbleObj[i].rel_pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].rel_pos.y - M_MapData.scrollPos.y, 300, 0, 300, 300, handle, true);
+            break;
+        case 9:
+            DrawRectExtendGraphF(I_PlBubbleObj[i].pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].pos.y - M_MapData.scrollPos.y,
+                I_PlBubbleObj[i].rel_pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].rel_pos.y - M_MapData.scrollPos.y, 600, 0, 300, 300, handle, true);
+            break;
+        default:
+            break;
+        }
 
-        DrawExtendGraphF(I_PlBubbleObj[i].pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].pos.y - M_MapData.scrollPos.y,
-            I_PlBubbleObj[i].rel_pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].rel_pos.y - M_MapData.scrollPos.y, handle, true);
+        //DrawExtendGraphF(I_PlBubbleObj[i].pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].pos.y - M_MapData.scrollPos.y,
+        //    I_PlBubbleObj[i].rel_pos.x - M_MapData.scrollPos.x, I_PlBubbleObj[i].rel_pos.y - M_MapData.scrollPos.y, handle, true);
     }
 }
 
@@ -152,7 +193,7 @@ void PlBubble::inputDebugKey(void)
         I_PlBubbleObj[3].exist = true;
     }
 
-    if (M_Input->GetKey(KEY_INPUT_J))    I_PlBubbleObj[0].pos.x -=10;
+    if (M_Input->GetKey(KEY_INPUT_J))    I_PlBubbleObj[0].pos.x -= 10;
     if (M_Input->GetKey(KEY_INPUT_L))   I_PlBubbleObj[0].pos.x += 10;
     if (M_Input->GetKey(KEY_INPUT_I))      I_PlBubbleObj[0].pos.y -= 10;
     if (M_Input->GetKey(KEY_INPUT_K))    I_PlBubbleObj[0].pos.y += 10;
