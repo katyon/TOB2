@@ -29,6 +29,7 @@ void System::drawDebugString()
     DrawFormatString(0, 40, cr, "Game  :Control+3");
     DrawFormatString(0, 60, cr, "Editor:Control+4");
     DrawFormatString(0, 80, cr, "gameClear:%d", M_GameManager.clear);
+    DrawFormatString(0, 100, cr, "pause %d", M_GameManager.pause);
 
     DrawFormatString(270, 0, cr, "bubblePosX  %f", I_PlBubbleObj[0].pos.x);
     DrawFormatString(270, 20, cr, "bubblePosY  %f", I_PlBubbleObj[0].pos.y);

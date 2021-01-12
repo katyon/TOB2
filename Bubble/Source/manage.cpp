@@ -136,6 +136,8 @@ void GameManager::init(void)
     pos.set(0, 0);
     src.set(0, 0);
     bubble_magnification = 0.0f;
+    pause = false;
+    pause_num = 1;
 }
 
 void GameManager::update(void)
@@ -144,6 +146,39 @@ void GameManager::update(void)
     {
         PlaySoundMem(bgmSH, DX_PLAYTYPE_LOOP, true);
         once = false;
+    }
+    if (pause)
+    {
+        if (M_Input->GetKeyDown(KEY_INPUT_P))
+        {
+            pause_num = 1;
+            pause = false;
+        }
+
+        if (M_Input->GetKeyDown(KEY_INPUT_UP)) pause_num--;
+        if (M_Input->GetKeyDown(KEY_INPUT_DOWN)) pause_num++;
+
+        if (pause_num < 1) pause_num = 1;
+        if (pause_num > PAUSE_MAX) pause_num = PAUSE_MAX;
+
+        switch (pause_num)
+        {
+        case 1:
+            M_System.changeSceneStateInit(State_Title);
+            break;
+        case 2:
+            M_System.changeSceneStateInit(State_Choice);
+            break;
+        case 3:
+            M_System.changeSceneStateInit(State_Choice);
+            break;
+        default:
+            break;
+        }
+    }
+    else
+    {
+        if (M_Input->GetKeyDown(KEY_INPUT_P)) pause = true;
     }
 
     if (clear == false)
@@ -222,6 +257,28 @@ void GameManager::draw(void)
         if (timer > 60)
         {
             DrawRectGraphF(pos.x, pos.y, src.x, src.y, 1920, 1080, handle, true, false, false);
+        }
+    }
+
+    if (pause)
+    {
+        SetFontSize(100);
+        unsigned int _cr = GetColor(0, 153, 255);
+
+        DrawFormatString(270, 300, _cr, "ポーズ中");
+        switch (pause_num)
+        {
+        case 1:
+            DrawFormatString(270, 400, _cr, "ポーズ中");
+            break;
+        case 2:
+            DrawFormatString(270, 500, _cr, "ポーズ中");
+            break;
+        case 3:
+            DrawFormatString(270, 600, _cr, "ポーズ中");
+            break;
+        default:
+            break;
         }
     }
 }

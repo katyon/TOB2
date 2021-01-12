@@ -92,7 +92,6 @@ void WaterSource::init(void)
     decisionSH = LoadSoundMem("Data\\Sounds\\decision.mp3");
     jetSH = LoadSoundMem("Data\\Sounds\\jet.mp3");
     once = true;
-    scrollTimer = 1;
     nowNum = maxNum - 1;
     M_Water_Current.range = maxNum - 2;
 }
@@ -147,7 +146,9 @@ void WaterSource::update(void)
     if (nowNum > maxNum) nowNum = maxNum;
 
     if (nowNum > 1 && nowNum < maxNum)
+    {
         M_MapData.scrollPos.y = I_WatereObj[nowNum - 1].pos.y - (1080 * 0.5) + 100;
+    }
 }
 
 void WaterSource::draw(void)

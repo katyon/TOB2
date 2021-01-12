@@ -34,5 +34,4 @@ private:
     int jetSH;
     bool once;
     unsigned int cr;
-    float scrollTimer;
 };

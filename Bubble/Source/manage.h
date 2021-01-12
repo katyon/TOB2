@@ -2,6 +2,7 @@
 #include "singleton.h"
 #include "vec2.h"
 // ’è” ----------------------------------------------------------------
+#define PAUSE_MAX (3)
 
 // ƒNƒ‰ƒX --------------------------------------------------------------
 #define M_TitleManager TitleManager::getInstance()
@@ -51,6 +52,7 @@ public:
     bool clear = false;
     bool migration = false;
 
+    bool pause;
 private:
     unsigned int cr = 0;
     int state = 0;
@@ -63,4 +65,6 @@ private:
     float bubble_magnification;
     vec2f   pos;
     vec2f   src;
+
+    int pause_num;
 };

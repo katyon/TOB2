@@ -167,25 +167,32 @@ void Scene_Game::init(void)
 // ƒQ[ƒ€XVˆ—
 void Scene_Game::update(void)
 {
-    if (M_Scene_Migration.getTimer() > 60)
+    if (!M_GameManager.pause)
     {
-        if (M_GameManager.clear == false)
+        if (M_Scene_Migration.getTimer() > 60)
         {
-            M_MapData.update();
-            M_Water_Current.update();
-            M_GameBg.update();
-            M_Bubble.update();
-            M_WaterSource.update();
-            M_Goals.update();
-            // M_UI.update();
+            if (M_GameManager.clear == false)
+            {
+                M_MapData.update();
+                M_Water_Current.update();
+                M_GameBg.update();
+                M_Bubble.update();
+                M_WaterSource.update();
+                M_Goals.update();
+                // M_UI.update();
+            }
+            M_GameManager.update();
         }
-        M_GameManager.update();
+        else
+        {
+            M_MigrationBg.update();
+        }
+        M_Scene_Migration.update1();
     }
     else
     {
-        M_MigrationBg.update();
+        M_GameManager.update();
     }
-    M_Scene_Migration.update1();
 }
 
 // ƒQ[ƒ€•`‰æˆ—
