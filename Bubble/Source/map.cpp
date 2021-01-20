@@ -28,6 +28,7 @@ void MapData::init(void)
     bubbleHND = LoadGraph("Data\\Images\\Sprite\\plBubble2.png");
     divisionSH = LoadSoundMem("Data\\Sounds\\division.mp3");
     breakSH = LoadSoundMem("Data\\Sounds\\break.mp3");
+    ChangeVolumeSoundMem(160, breakSH);
     goals = LoadGraph("Data\\Images\\Sprite\\goals.png");
     M_MapData.setMapData();
     M_MapData.spawnBubble();

@@ -20,6 +20,7 @@ void TitleManager::init(void)
     change = false;
     decisionSH = LoadSoundMem("Data\\Sounds\\decision.mp3");
     bgmSH = LoadSoundMem("Data\\Sounds\\opning.mp3");
+    ChangeVolumeSoundMem(200, bgmSH);
     once = true;
 }
 
@@ -130,6 +131,7 @@ void GameManager::init(void)
     handle = LoadGraph("Data\\Images\\Bg\\Clear_Bg.png");
     bubble = LoadGraph("Data\\Images\\Sprite\\bubble.png");
     bgmSH = LoadSoundMem("Data\\Sounds\\game.mp3");
+    ChangeVolumeSoundMem(170, bgmSH);
     once = true;
     num = 0;
     timer = 0;

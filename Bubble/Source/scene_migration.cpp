@@ -9,6 +9,7 @@ void Scene_Migration::init()
     handle0 = LoadGraph("Data\\Images\\Sprite\\bubble.png");
     handle1 = LoadGraph("Data\\Images\\Bg\\Game_Bg.png");
     zavanSH = LoadSoundMem("Data\\Sounds\\zavan.mp3");
+    ChangeVolumeSoundMem(180, zavanSH);
     timer = 0;
     movement = 0;
     for (int i = 0; i < MIGRATION_MAX; i++)

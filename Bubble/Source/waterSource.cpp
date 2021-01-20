@@ -24,6 +24,8 @@ void WaterObj::init(WaterObj* obj, float chipY, float rel_chipY)
     obj->exist = false;
 }
 
+
+
 void WaterSource::init(void)
 {
     for (int i = 0; i < SOURCE_MAX; i++)
@@ -59,13 +61,15 @@ void WaterSource::init(void)
         I_WatereObj[2].init(&I_WatereObj[2], 704, 1024);
         break;
     case 4:
-        maxNum = 6;
-        I_WatereObj[0].init(&I_WatereObj[0], 1, 4);
+        maxNum = 8;
+        I_WatereObj[0].init(&I_WatereObj[0], 2, 4);
         I_WatereObj[1].init(&I_WatereObj[1], 6, 8);
-        I_WatereObj[2].init(&I_WatereObj[2], 11, 12);
-        I_WatereObj[3].init(&I_WatereObj[3], 18, 21);
-        I_WatereObj[4].init(&I_WatereObj[4], 24, 26);
-        I_WatereObj[5].init(&I_WatereObj[5], 28, 30);
+        I_WatereObj[2].init(&I_WatereObj[2], 10, 12);
+        I_WatereObj[3].init(&I_WatereObj[3], 14, 16);
+        I_WatereObj[4].init(&I_WatereObj[4], 18, 20);
+        I_WatereObj[5].init(&I_WatereObj[5], 22, 24);
+        I_WatereObj[6].init(&I_WatereObj[6], 26, 28);
+        I_WatereObj[7].init(&I_WatereObj[7], 30, 32);
         break;
     case 5:
         maxNum = 3;
@@ -91,6 +95,7 @@ void WaterSource::init(void)
     handle = LoadGraph("Data\\Images\\Sprite\\waterSource.png");
     decisionSH = LoadSoundMem("Data\\Sounds\\decision.mp3");
     jetSH = LoadSoundMem("Data\\Sounds\\jet.mp3");
+    ChangeVolumeSoundMem(190, jetSH);
     once = true;
     scrollTimer = 1;
     nowNum = maxNum - 1;
