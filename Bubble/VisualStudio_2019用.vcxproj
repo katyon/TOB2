@@ -22,6 +22,7 @@
     <ClCompile Include="Source\bg.cpp" />
     <ClCompile Include="Source\bubble.cpp" />
     <ClCompile Include="Source\editor.cpp" />
+    <ClCompile Include="Source\effect.cpp" />
     <ClCompile Include="Source\Elastic.cpp" />
     <ClCompile Include="Source\file.cpp" />
     <ClCompile Include="Source\goals.cpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="Source\bubble.h" />
     <ClInclude Include="Source\common.h" />
     <ClInclude Include="Source\editor.h" />
+    <ClInclude Include="Source\effect.h" />
     <ClInclude Include="Source\Elastic.h" />
     <ClInclude Include="Source\file.h" />
     <ClInclude Include="Source\goals.h" />

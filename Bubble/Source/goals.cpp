@@ -147,7 +147,18 @@ void Goals::update(void)
             if (I_GoalsObj[j].exist == false) continue;
             if (M_System.isCollCircleWithRect(I_PlBubbleObj[i].center, I_PlBubbleObj[i].radius, I_GoalsObj[j].pos, I_GoalsObj[j].rel_pos))
             {
-                if (I_PlBubbleObj[i].level == I_GoalsObj[j].num) I_GoalsObj[j].clear = true;
+                if (I_PlBubbleObj[i].speed.y < 0)
+                {
+                    if (I_PlBubbleObj[i].level == I_GoalsObj[j].num)
+                    {
+                        I_PlBubbleObj[i].exist = false;
+                        if (I_PlBubbleObj[i].exist == false)
+                        {
+                            I_GoalsObj[j].clear = true;
+
+                        }
+                    }
+                }
             }
         }
     }

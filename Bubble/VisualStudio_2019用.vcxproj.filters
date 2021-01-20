@@ -60,6 +60,9 @@
     <ClCompile Include="Source\waterSource.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Source\effect.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\bg.h">
@@ -120,6 +123,9 @@
       <Filter>ヘッダファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\waterSource.h">
+      <Filter>ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\effect.h">
       <Filter>ヘッダファイル</Filter>
     </ClInclude>
   </ItemGroup>

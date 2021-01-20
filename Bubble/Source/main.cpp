@@ -15,6 +15,7 @@
 #include "waterSource.h"
 #include "water_current.h"
 #include "scene_migration.h"
+#include "effect.h"
 
 //////////////////////////////////////////////////////////////////////////
 //	各ゲームで使用するクラスインスタンスやグローバル変数はここに記述
@@ -178,6 +179,7 @@ void Scene_Game::update(void)
             M_WaterSource.update();
             M_Goals.update();
             // M_UI.update();
+            M_Effect.update();
         }
         M_GameManager.update();
     }
@@ -199,8 +201,9 @@ void Scene_Game::draw(void)
         M_Bubble.draw();
         M_WaterSource.draw();
         M_Goals.draw();
-        //M_UI.draw();
+        M_UI.draw();
         M_GameManager.draw();
+        M_Effect.draw();
     }
     else
     {
@@ -252,11 +255,13 @@ void Usable::AfterInit(void)
     sceneState = State_Title;
     //sceneState = State_Editor;
     M_SceneTitle.init();
+    M_Effect.init();
 }
 
 // ゲーム終了後処理
 void Usable::End(void)
 {
+    M_Effect.end();
     // InputClassの終了処理
     Input::Destroy();
     // 全グラフィックの削除

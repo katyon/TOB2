@@ -9,6 +9,7 @@
 #include "manage.h"
 #include "map.h"
 #include "system.h"
+#include "effect.h"
 
 // externéŒ¾,static‰Šú‰» ----------------------------------------------------------------------
 extern PlBubbleObj I_PlBubbleObj[PL_BUBBLE_MAX];
@@ -320,7 +321,9 @@ void MapData::collMapChipWithBubble(PlBubbleObj* obj)
                     // j
                 case Needle:
                     PlaySoundMem(breakSH, DX_PLAYTYPE_BACK, true);
-
+                    M_Effect.position_x = obj->pos.x + obj->radius - M_MapData.scrollPos.x;
+                    M_Effect.position_y = obj->pos.y + obj->radius - M_MapData.scrollPos.y;
+                    M_Effect.effectFlg = true;
                     obj->exist = false;
                     break;
                     // •ª—ô
@@ -538,15 +541,15 @@ void MapData::collGoalsWithBubble(PlBubbleObj* obj)
         goalTop = I_GoalsObj[i].pos.y;
         goalBottom = I_GoalsObj[i].rel_pos.y;
 
-        if (goalLeft <= bubbleCollRight && bubbleCollLeft <= goalRight && goalTop <= bubbleCollBottom && bubbleCollTop <= goalBottom)
-        {
-            if (obj->level >= I_GoalsObj[i].num)
-            {
-                PlaySoundMem(M_TitleManager.decisionSH, DX_PLAYTYPE_BACK, true);
+        //if (goalLeft <= bubbleCollRight && bubbleCollLeft <= goalRight && goalTop <= bubbleCollBottom && bubbleCollTop <= goalBottom)
+        //{
+        //    if (obj->level >= I_GoalsObj[i].num)
+        //    {
+        //        PlaySoundMem(M_TitleManager.decisionSH, DX_PLAYTYPE_BACK, true);
 
-                I_GoalsObj[i].clear = true;
-                obj->exist = false;
-            }
-        }
+        //        I_GoalsObj[i].clear = true;
+        //        obj->exist = false;
+        //    }
+        //}
     }
 }
